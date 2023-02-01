@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="Primary">#34495E</Color>
+    <Color x:Key="Secondary">#FFFFFF</Color>
+    <Color x:Key="Tertiary">#2B0B98</Color>
+    <Color x:Key="White">White</Color>
+    <Color x:Key="Black">Black</Color>
+    <Color x:Key="WhiteSmoke">WhiteSmoke</Color>
+    <Color x:Key="Gray100">#E1E1E1</Color>
+    <Color x:Key="Gray200">#C8C8C8</Color>
+    <Color x:Key="Gray300">#ACACAC</Color>
+    <Color x:Key="Gray400">#919191</Color>
+    <Color x:Key="Gray500">#6E6E6E</Color>
+    <Color x:Key="Gray600">#404040</Color>
+    <Color x:Key="Gray900">#212121</Color>
+    <Color x:Key="Gray950">#141414</Color>
+
+    <!-- Colores Generales -->
+    <Color x:Key="ColorFuenteGeneral">Black</Color>
+    <Color x:Key="ColorFuenteBotonesGeneral">White</Color>
+    <Color x:Key="ColorFuenteLinkGeneral">Blue</Color>
+    <Color x:Key="ColorFondoGeneralBotonAceptar">Green</Color>
+    <Color x:Key="ColorFondoGeneralBotonAgregar">OrangeRed</Color>
+    <Color x:Key="ColorFondoGeneralBotonCancelar">#970606</Color>
+    <Color x:Key="ColorFondoLogo">White</Color>
+    <Color x:Key="ColorFondoPopupEspera">#D35400</Color>
+    <Color x:Key="ColorTextoPopupEspera">#FFFFFF</Color>
+    <Color x:Key="ColorTituloGeneral">White</Color>
+    <!-- Fin Colores Pantalla de Inicio //////////////////////////////////////// -->
+
+    <!-- Colores Pantalla de Inicio -->
+    <Color x:Key="ColorInicioFondo">LightSteelBlue</Color>    
+    <Color x:Key="ColorInicioFuenteBusquedaArticulo">White</Color>
+    <Color x:Key="ColorInicioFuenteBusquedaArticuloPlaceHolder">WhiteSmoke</Color>
+    <Color x:Key="ColorInicioCancelButtonBusquedaArticulo">#D35400</Color>
+    <Color x:Key="ColorInicioArticuloPrecioOriginal">Red</Color>
+    <Color x:Key="ColorInicioArticuloFinal">Green</Color>
+    <Color x:Key="ColorInicioFondoArticulo">WhiteSmoke</Color>
+    <Color x:Key="ColorInicioBordeImagenArticulo">White</Color>
+    <Color x:Key="ColorInicioFondoImagenArticulo">White</Color>
+    <Color x:Key="ColorInicioBordeBarraOpcionesArticulo">WhiteSmoke</Color>
+    <!-- Fin Colores Pantalla de Inicio //////////////////////////////////////// -->
+
+    <!-- Colores Popup de Inicio para codigo postal -->
+    <Color x:Key="ColorPopupFondoFrame">WhiteSmoke</Color>
+    <Color x:Key="ColorPopupTextoBotonCodigoPostal">WhiteSmoke</Color>
+    <Color x:Key="ColorPopupFondoBotonCodigoPostal">OrangeRed</Color>
+    <Color x:Key="ColorPopupTextoBotonColonia">WhiteSmoke</Color>
+    <Color x:Key="ColorPopupFondoBotonColonia">OrangeRed</Color>
+    <Color x:Key="ColorPopupFondoInicativoBotonCPyColonia">#34495E</Color>
+    <Color x:Key="ColorPopupTextoInicativoBotonCPyColonia">WhiteSmoke</Color>
+    <Color x:Key="ColorPopupFondoCajaTextoCP">#1F618D</Color>
+    <Color x:Key="ColorPopupColorTextoCajaTextoCP">WhiteSmoke</Color>
+    <Color x:Key="ColorPopupFondoBotonAceptarCP">Green</Color>
+    <Color x:Key="ColorPopupTextoBotonAceptarCP">White</Color>
+    <Color x:Key="ColorPopupFondoPickerEstado">#1F618D</Color>
+    <Color x:Key="ColorPopupTextoPickerEstado">WhiteSmoke</Color>
+    <Color x:Key="ColorPopupFondoPickerMunicipio">#1F618D</Color>
+    <Color x:Key="ColorPopupTextoPickerMunicipio">WhiteSmoke</Color>
+    <Color x:Key="ColorPopupFondoPickerColonia">#1F618D</Color>
+    <Color x:Key="ColorPopupTextoPickerColonia">WhiteSmoke</Color>
+    <Color x:Key="ColorPopupFondoBotonAceptarColonia">Green</Color>
+    <Color x:Key="ColorPopupTextoBotonAceptarColonia">White</Color>
+    <!-- Fin Colores Popup de Inicio para codigo postal //////////////////////////////////////// -->
+
+    <!-- Colores Popup de Bienvenida -->
+    <Color x:Key="ColorPopupTextoBienvenida">#1F618D</Color>
+    <Color x:Key="ColorPopupFondoBienvenida">White</Color>
+    <!-- Fin Colores Popup de Bienvenida //////////////////////////////////////// -->
+
+    <!-- Colores Pantalla de Carrito -->
+    <Color x:Key="ColorCarritoFondo">LightSteelBlue</Color>
+    <Color x:Key="ColorCarritoOrillaArticulo">#F39C12</Color>
+    <Color x:Key="ColorCarritoFondoImagenArticulo">White</Color>
+    <Color x:Key="ColorCarritoFondoArticulo">#34495E</Color>
+    <Color x:Key="ColorCarritoDescPromoArticulo">Yellow</Color>
+    <Color x:Key="ColorCarritoFondoTotales">CadetBlue</Color>
+    <Color x:Key="ColorCarritoTotalesArticulo">GreenYellow</Color>
+    <Color x:Key="ColorCarritoBotonEliminarArticulo">#D35400</Color>
+    <Color x:Key="ColorCarritoOpcionActiva">#D35400</Color>
+    <Color x:Key="ColorCarritoOpcionInactiva">#34495E</Color>
+    <Color x:Key="ColorCarritoFuenteTotales">White</Color>
+    <!-- Fin Colores Pantalla de Carrito //////////////////////////////////////// -->
+
+    <!-- Colores Pantalla de Caracteristicas de Articulo -->
+    <Color x:Key="ColorCaractArtFondo">LightSteelBlue</Color>
+    <Color x:Key="ColorCaractArtFondoImagenArticulo">White</Color>
+    <Color x:Key="ColorCaractArtBordeImagenArticulo">Black</Color>
+    <Color x:Key="ColorCaractArtInformacion">Black</Color>
+    <Color x:Key="ColorCaractArtFondoPestanas">White</Color>
+    <Color x:Key="ColorCaractArtFuentePestanas">White</Color>
+    <Color x:Key="ColorCaractArtPestanaActiva">#106c07</Color>
+    <Color x:Key="ColorCaractArtPestanaInactiva">#34495E</Color>
+    <!-- Fin Colores Pantalla de Caracteristicas de Articulo //////////////////////////////////////// -->
+
+    <!-- Colores Pantalla de Totales -->
+    <Color x:Key="ColorTotalesFuente">White</Color>
+    <Color x:Key="ColorTotalesFondoPagos">Crimson</Color>
+    <Color x:Key="ColorTotalesBotonTerminar">DodgerBlue</Color>
+    <!-- Fin Colores Pantalla de Totales //////////////////////////////////////// -->
+
+    <!-- Colores Pantalla de Cuenta -->
+    <Color x:Key="ColorCuentaFondo">#F9FDFC</Color>
+    <!-- Fin Colores Pantalla de Cuenta //////////////////////////////////////// -->
+
+    <!-- Colores Pantalla Payment -->
+    <Color x:Key="ColorPaymentFuenteTotales">White</Color>
+    <Color x:Key="ColorPaymentFondoDatosGenerales">#D35400</Color>
+    <Color x:Key="ColorPaymentFuenteTituloDatosGenerales">White</Color>
+    <Color x:Key="ColorPaymentFuenteDatosGenerales">Yellow</Color>
+    <Color x:Key="ColorPaymentIndicadorFormasPago">LightGray</Color>
+    <Color x:Key="ColorPaymentIndicadorSeleccionadoFormasPago">DarkGray</Color>
+    <!-- Fin Colores Pantalla Payment //////////////////////////////////////// -->
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
+    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
+    <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}"/>
+    <SolidColorBrush x:Key="Gray200Brush" Color="{StaticResource Gray200}"/>
+    <SolidColorBrush x:Key="Gray300Brush" Color="{StaticResource Gray300}"/>
+    <SolidColorBrush x:Key="Gray400Brush" Color="{StaticResource Gray400}"/>
+    <SolidColorBrush x:Key="Gray500Brush" Color="{StaticResource Gray500}"/>
+    <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
+    <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
+    <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
+    <Color x:Key="Yellow100Accent">#F7B548</Color>
+    <Color x:Key="Yellow200Accent">#FFD590</Color>
+    <Color x:Key="Yellow300Accent">#FFE5B9</Color>
+    <Color x:Key="Cyan100Accent">#28C2D1</Color>
+    <Color x:Key="Cyan200Accent">#7BDDEF</Color>
+    <Color x:Key="Cyan300Accent">#C3F2F4</Color>
+    <Color x:Key="Blue100Accent">#3E8EED</Color>
+    <Color x:Key="Blue200Accent">#72ACF1</Color>
+    <Color x:Key="Blue300Accent">#A7CBF6</Color>
+
+</ResourceDictionary>

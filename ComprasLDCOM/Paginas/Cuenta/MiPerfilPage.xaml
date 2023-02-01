@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComprasLDCOM.Paginas.Cuenta.MiPerfilPage"
+             NavigationPage.HasNavigationBar="false"
+             Shell.NavBarIsVisible="False"
+             >
+
+    <StackLayout>
+        <Grid RowDefinitions=".4*,1.5*,*,*,*,*,*" ColumnDefinitions="*"
+              VerticalOptions="FillAndExpand"
+               BackgroundColor="#E0F9FF">
+            <Label Grid.Row="0"
+                Text="Mi perfil"
+                VerticalTextAlignment="Center"
+                FontSize="Large"
+                HorizontalTextAlignment="Center"
+                BackgroundColor="#F9FDFC"/>
+
+            <Image Grid.Row="1"
+                   Margin="10"
+                Source="circle_user_solid.svg">
+                
+            </Image>
+
+            <Frame Grid.Row="2"
+                   CornerRadius="20"
+                   Padding="0"
+                   BorderColor="Transparent"
+                   Margin="30,15">
+                <StackLayout Padding="0,10,0,0">
+                    <Label Text="Nombre"
+                           FontSize="Large"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="{Binding Nombre}"
+                           Margin="20,0"
+                           FontSize="Medium"
+                            HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Grid.Row="3"
+                   CornerRadius="20"
+                   Padding="0"
+                   BorderColor="Transparent"
+                   Margin="30,15">
+                <StackLayout Padding="0,10,0,0">
+                    <Label Text="Correo"
+                           FontSize="Large"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="lf.itsx@yahoo.com"
+                           Margin="20,0"
+                           FontSize="Medium"
+                            HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Grid Grid.Row="4"
+                  ColumnDefinitions="*,1.5*">
+                <Frame Grid.Column="0"
+                   CornerRadius="20"
+                   Padding="0"
+                   BorderColor="Transparent"
+                   Margin="30,15,10,15">
+                    <StackLayout Padding="0,10,0,0">
+                        <Label Text="lada"
+                           FontSize="Large"
+                           HorizontalTextAlignment="Center"/>
+                        <Label Text="+52"
+                           Margin="20,0"
+                           FontSize="Medium"
+                            HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Column="1"
+                   CornerRadius="20"
+                   Padding="0"
+                   BorderColor="Transparent"
+                   Margin="0,15,30,15">
+                    <StackLayout Padding="0,10,0,0">
+                        <Label Text="Telefono"
+                           FontSize="Large"
+                           HorizontalTextAlignment="Center"/>
+                        <Label Text="2281913621"
+                           Margin="20,0"
+                           FontSize="Medium"
+                            HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+            <Frame Grid.Row="5"
+                   CornerRadius="20"
+                   Padding="0"
+                   BorderColor="Transparent"
+                   Margin="30,15">
+                <Picker Title="V"
+                    Margin="15,0,15,10">
+                    
+                </Picker>
+            </Frame>
+
+            <Grid Margin="30,15"
+                Grid.Row="6"
+                RowDefinitions="*,2.5*"
+                ColumnDefinitions="*,*">
+
+                <Label  
+                    Grid.RowSpan="2"
+                    Text="Cambiar contraseña"
+                    BackgroundColor="Beige"
+                    TextDecorations="Underline"
+                    FontSize="15"
+                    VerticalOptions="Center"
+                    HorizontalTextAlignment="Center">
+
+
+                </Label>
+                <Label Grid.Column="1"
+                       Margin="15,0,0,0"
+                       Text="Fecha de nacimiento"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Start"
+                       />
+                <Frame Grid.Row="1"
+                       BorderColor="Transparent"
+                       Margin="10,0,10,15"
+                       Padding="0"
+                       Grid.Column="1">
+                    <Label Text="{Binding Fecha, StringFormat='{0:yyyy - MM - dd}'}"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center">
+                        
+                    </Label>
+                    
+                </Frame>
+            </Grid>
+        </Grid>
+    </StackLayout>
+</ContentPage>

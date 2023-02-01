@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComprasLDCOM.Popups.Carrito.PopupPageTarjetaBancaria"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+            xmlns:behaviors ="clr-namespace:ComprasLDCOM.API"
+            CanBeDismissedByTappingOutsideOfPopup="False"
+            Size="350,400"
+            Color="{StaticResource BackgroundPopUp}">
+
+    <StackLayout HeightRequest="315" 
+                 WidthRequest="330"
+                 BackgroundColor="White" >
+        <Grid ColumnSpacing="0" RowSpacing="1" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="65" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackLayout Grid.Row="0" 
+                         Grid.Column="0"
+                         HorizontalOptions="Center"   
+                         VerticalOptions="Center"   
+                         Padding="10,0,10,0"
+                         Margin="5">
+                <Label FontSize="Title" 
+                       TextColor="{StaticResource Primary}"   
+                       HorizontalOptions="CenterAndExpand"   
+                       Text="Indique los datos con los que va a pagar"
+                       Margin="0,5,0,0" 
+                       FontAttributes="Bold"/>
+
+            </StackLayout>
+            
+            <Grid Grid.Row="1" 
+                  Grid.Column="0" 
+                  ColumnDefinitions="*" 
+                  Margin="5,0,5,5" >
+
+                <Frame CornerRadius="10" 
+                               BackgroundColor="#34495E"
+                               Padding="0" 
+                               Margin="0,5,0,0"
+                               x:Name="frmTarjeta"
+                               IsVisible="{Binding TabTarjetaVisible}"
+               HeightRequest="230"                
+               VerticalOptions="StartAndExpand" >
+                    <StackLayout Margin="5,5,5,5">
+                        <StackLayout Padding="5" 
+                                             BackgroundColor="#34495E"
+                                             HorizontalOptions="FillAndExpand">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                            <Grid ColumnSpacing="0" 
+                                          RowSpacing="0" 
+                                          HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".1*"/>
+                                    <ColumnDefinition Width=".4*"/>
+                                    <ColumnDefinition Width=".1*"/>
+                                    <ColumnDefinition Width=".4*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" 
+                                               VerticalOptions="CenterAndExpand"
+                                               WidthRequest="50"
+                                               HeightRequest="50"
+                                               Source="card_launcher_adaptive_fore.png"
+                                               Margin="-10" 
+                                               HorizontalOptions="StartAndExpand"  />
+                                <Label Grid.Column="1" 
+                                               Text="Tarjeta Bancaria" 
+                                               Padding="0" 
+                                               TextColor="White" 
+                                               FontSize="Body" 
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="CenterAndExpand" />
+                                <Label Grid.Column="2" 
+                                               Text="$ " 
+                                               TextColor="White" 
+                                               FontSize="Medium" 
+                                               FontAttributes="Bold" 
+                                               HorizontalOptions="End" 
+                                               VerticalOptions="CenterAndExpand"  />
+                                <Label Grid.Column="3" 
+                                               Text="{Binding Total_TarjetaBancaria, StringFormat='{0:N2}', Mode=OneWay}" 
+                                               TextColor="White" 
+                                               FontSize="Medium" 
+                                               FontAttributes="Bold"  
+                                               HorizontalTextAlignment="End"
+                                               VerticalOptions="CenterAndExpand"
+                                               Padding="0,0,5,0"/>
+                            </Grid>
+                        </StackLayout>
+                        <Frame CornerRadius="10" 
+                                       Padding="0" 
+                                       Margin="0"
+                                       VerticalOptions="FillAndExpand">
+                            <StackLayout Padding="0"
+                                                 HorizontalOptions="FillAndExpand" >
+                                <StackLayout Padding="0" >
+                                    <Grid ColumnSpacing="0" 
+                                                  RowSpacing="3" 
+                                                  Padding="5" 
+                                                  HorizontalOptions="Fill" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40" />
+                                            <RowDefinition Height="40" />
+                                            <RowDefinition Height="40" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Row="0" 
+                                                       Grid.Column="0" 
+                                                       Text="Monto a Pagar:" 
+                                                       TextColor="Black" 
+                                                       VerticalOptions="CenterAndExpand" />
+                                        <Entry Grid.Row="0" 
+                                                       Grid.Column="1" 
+                                                       BackgroundColor="{StaticResource Gray200}"
+                                                       VerticalTextAlignment="Center" 
+                                                       Margin="0" 
+                                                       HorizontalTextAlignment="Center"
+                                                       VerticalOptions="CenterAndExpand" 
+                                                       FontSize="Medium" 
+                                                       Keyboard="Numeric"
+                                                       Placeholder="Monto a Pagar"
+                                                       PlaceholderColor="{StaticResource Gray300}"
+                                                       Text="{Binding MontoPagoTB, Mode=TwoWay}" />
+
+
+                                        <Label Grid.Row="1" 
+                                                       Grid.Column="0" 
+                                                       Text="Tarjeta Bancaria:" 
+                                                       TextColor="Black" 
+                                                       VerticalOptions="CenterAndExpand" />
+                                        <Entry Grid.Row="1" 
+                                                       Grid.Column="1" 
+                                                       BackgroundColor="{StaticResource Gray200}"
+                                                       VerticalTextAlignment="Center" 
+                                                       Margin="0" 
+                                                       HorizontalTextAlignment="Center"
+                                                       VerticalOptions="CenterAndExpand" 
+                                                       MaxLength="4" 
+                                                       FontSize="Medium" 
+                                                       Keyboard="Numeric"
+                                                       Placeholder="Últimos 4 dígitos"
+                                                       PlaceholderColor="{StaticResource Gray300}"
+                                                       Text="{Binding NumTarjeta, Mode=TwoWay}" />
+
+                                        <Label Grid.Row="2" 
+                                                       Grid.Column="0" 
+                                                       Text="Nombre:" 
+                                                       TextColor="Black" 
+                                                       VerticalOptions="CenterAndExpand" />
+                                        <Entry Grid.Row="2" 
+                                                       Grid.Column="1" 
+                                                       BackgroundColor="{StaticResource Gray200}"
+                                                       VerticalTextAlignment="Center" 
+                                                       Margin="0"
+                                                       HorizontalTextAlignment="Center"
+                                                       VerticalOptions="CenterAndExpand" 
+                                                       MaxLength="15" 
+                                                       FontSize="Medium" 
+                                                       Keyboard="Text"
+                                                       Placeholder="Nombre"
+                                                       PlaceholderColor="{StaticResource Gray300}"
+                                                       Text="{Binding NombreTarjetahabiente, Mode=TwoWay}" />
+                                    </Grid>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="0" RowDefinitions="50" ColumnDefinitions=".3*,*,.3*" RowSpacing="5" ColumnSpacing="5" Padding="5">
+                <Frame CornerRadius="10" Grid.Column="1" Grid.Row="0" Padding="0" >
+                    <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" BackgroundColor="{StaticResource ColorFondoGeneralBotonAceptar}" >
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer />
+                        </StackLayout.GestureRecognizers>
+                        <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="*,*" ColumnSpacing="0" Margin="0" Padding="0" >
+                            <Image Grid.Column="0" 
+                               Grid.Row="0"
+                               HorizontalOptions="CenterAndExpand" 
+                               VerticalOptions="CenterAndExpand"
+                               Margin="5,0,0,0"
+                               WidthRequest="70"
+                               HeightRequest="70"
+                               Source="done_launcher_adaptive_fore.png" />
+
+                            <Label Grid.Column="1" 
+                               Grid.Row="0"
+                               Text="Aceptar"
+                               HorizontalOptions="StartAndExpand"
+                               VerticalOptions="Center"
+                               FontSize="Medium" 
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                               Padding="0,0,0,0" 
+                               Margin="0,5" />
+                        </Grid>
+                        <StackLayout.Behaviors>
+                            <behaviors:ViewTappedButtonBehavior 
+                            Command="{Binding btnAceptarPopupTarjetaBancaria}"                     
+                            AnimationType="Fade"  />
+                        </StackLayout.Behaviors>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </Grid>
+
+    </StackLayout>
+</mct:Popup>

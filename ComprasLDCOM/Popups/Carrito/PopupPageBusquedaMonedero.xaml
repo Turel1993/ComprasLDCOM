@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           x:Class="ComprasLDCOM.Popups.Carrito.PopupPageBusquedaMonedero"
+           xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"  
+           xmlns:modelRes="clr-namespace:ComprasLDCOM.Datos.Carrito.Response"
+           xmlns:behaviors ="clr-namespace:ComprasLDCOM.API"
+           CanBeDismissedByTappingOutsideOfPopup="False"           
+           Color="{StaticResource BackgroundPopUp}" >
+
+    <StackLayout Orientation="Vertical"
+                 HeightRequest="550" 
+                 WidthRequest="330"
+                 BackgroundColor="White"   
+                 HorizontalOptions="Center"   
+                 VerticalOptions="Center"   
+                 Padding="10,0,10,0"
+                 Margin="10">
+        <Label FontSize="Title" 
+               TextColor="{StaticResource Primary}"   
+               HorizontalOptions="CenterAndExpand"   
+               Text="Monedero"
+               Margin="0,5,0,0" />
+
+        <BoxView Color="Gray"   
+                    HorizontalOptions="FillAndExpand"   
+                    HeightRequest="2"
+                    Margin="0,0,0,15">
+        </BoxView>
+
+        <Frame CornerRadius="8"
+               BackgroundColor="{StaticResource ColorCarritoFondo}" 
+               Margin="0" 
+               Padding="0"
+               HasShadow="False" >
+            <StackLayout Margin="0"
+                         Padding="0" >
+                <Grid ColumnSpacing="0" 
+                      RowSpacing="2"
+                      HeightRequest="480"
+                      WidthRequest="310" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".20*" />
+                        <RowDefinition Height=".80*" />
+                        <RowDefinition Height="70" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <VerticalStackLayout Grid.Row="0"
+                                         Grid.Column="0"  >
+                        <Label Text="Número Monedero"
+                                TextColor="{StaticResource ColorFuenteGeneral}"
+                                FontSize="Body" 
+                                Margin="5,5,5,0"
+                                Padding="0"/>
+
+                        <Grid RowDefinitions="*" 
+                                ColumnDefinitions=".15*,.70*,.15*">
+                            <ImageButton Grid.Row="0" 
+                                            Grid.Column="0"
+                                            WidthRequest="50"
+                                            HeightRequest="50" 
+                                            Source="card_launcher_adaptive_fore.png"
+                                            HorizontalOptions="Start" 
+                                            Margin="5,0,0,0"/>
+                            <Frame Grid.Row="0" Grid.Column="1"
+                                                BackgroundColor="{StaticResource Gray200}" 
+                                                Margin="0"  Padding="0" 
+                                            BorderColor="{StaticResource Gray200}"
+                                    HasShadow="False" HorizontalOptions="Fill">
+                                <Entry  PlaceholderColor="{StaticResource ColorFuenteGeneral}"
+                                        Placeholder="Número de Monedero"   
+                                        TextColor="{StaticResource ColorFuenteGeneral}"   
+                                        VerticalOptions="CenterAndExpand"   
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        FontSize="Medium"
+                                        Keyboard="Numeric"
+                                        MaxLength="16"
+                                        Margin="0"
+                                        Text="{Binding NumMonederoLealtadPopUp, Mode=TwoWay}"/>
+                            </Frame>
+                            <ImageButton Grid.Row="0" Grid.Column="2"
+                                        HeightRequest="40" 
+                                        WidthRequest="40"
+                                        Source="add_search_launcher_adaptive_fore.png" 
+                                        Command="{Binding btnBuscarMonederoPopUp, Mode=TwoWay}" />
+                        </Grid>
+
+                    </VerticalStackLayout>
+
+                    <Frame Grid.Row="1" 
+                            Grid.Column="0" 
+                            Grid.ColumnSpan="3" 
+                            CornerRadius="8"
+                            BackgroundColor="{StaticResource Gray200}" 
+                            Margin="5"
+                            Padding="0" >
+                        <Grid Padding="5" Margin="5,10" >
+                            <CollectionView x:Name="CollviewMonedero" ItemsSource="{Binding monederoList}" EmptyView="Sin Resultado de Monederos">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <Grid x:DataType="modelRes:ConsultaSocioFrecuenteDetalle" ColumnSpacing="3" RowSpacing="2">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width=".8*"/>
+                                                    <ColumnDefinition Width=".2*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Grid.Row="0"                                                           
+                                                        Grid.Column="0" 
+                                                        Text="{Binding Nombre, StringFormat='{0}'}" 
+                                                        FontSize="Small" 
+                                                        FontAttributes="Bold" 
+                                                        TextColor="Black" 
+                                                        HorizontalOptions="Start" 
+                                                        VerticalOptions="CenterAndExpand"
+                                                        Margin="0,0,0,0"/>
+
+                                                <Label Grid.Row="1" 
+                                                        Grid.Column="0" 
+                                                        Text="{Binding Correo, StringFormat='Correo:  {0}'}" 
+                                                        FontSize="Small" 
+                                                        FontAttributes="None" 
+                                                        TextColor="Black" 
+                                                        HorizontalOptions="Start" 
+                                                        VerticalOptions="CenterAndExpand"
+                                                        Margin="20,0,0,0"/>
+
+                                                <Label Grid.Row="2" 
+                                                        Grid.Column="0" 
+                                                        Text="{Binding Socio, StringFormat='Socio:    {0}'}" 
+                                                        FontSize="Small" 
+                                                        FontAttributes="None" 
+                                                        TextColor="Black" 
+                                                        HorizontalOptions="Start" 
+                                                        VerticalOptions="CenterAndExpand"
+                                                        Margin="20,0,0,0"/>
+
+                                                <Label Grid.Row="3" 
+                                                        Grid.Column="0" 
+                                                        Text="{Binding Tarjeta, StringFormat='Tarjeta:  {0}'}" 
+                                                        FontSize="Small" 
+                                                        FontAttributes="None" 
+                                                        TextColor="Black" 
+                                                        HorizontalOptions="Start" 
+                                                        VerticalOptions="CenterAndExpand"
+                                                        Margin="20,0,0,0"/>
+
+                                                <Label Grid.Row="4" 
+                                                        Grid.Column="0" 
+                                                        Text="{Binding Telefono, StringFormat='Tel:      {0}'}" 
+                                                        FontSize="Small" 
+                                                        FontAttributes="None" 
+                                                        TextColor="Black" 
+                                                        HorizontalOptions="Start" 
+                                                        VerticalOptions="CenterAndExpand"
+                                                        Margin="20,0,0,0"/>
+
+                                                <Button Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Grid.RowSpan="5"
+                                                        VerticalOptions="Center"
+                                                        HorizontalOptions="Center"
+                                                        Text="OK" 
+                                                        BackgroundColor="OrangeRed"
+                                                        Command="{Binding Path=BindingContext.btnMonederoOK, Source={x:Reference CollviewMonedero}}" 
+                                                        CommandParameter="{Binding .}" />
+
+                                                <BoxView Grid.Row="5"
+                                                            Grid.Column="0"
+                                                            Grid.ColumnSpan="2"
+                                                            Color="Gray"   
+                                                            HorizontalOptions="Fill"   
+                                                            HeightRequest="2"
+                                                            Margin="0,0,0,20"
+                                                            VerticalOptions="Center" />
+
+                                            </Grid>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </Frame>
+
+                    <Grid Grid.Row="2"
+                          Grid.Column="0"
+                        RowDefinitions="*"
+                          Margin="5,0,5,5"
+                          Padding="5"
+                          ColumnDefinitions=".20*,.60*,.20*">
+                        <Frame Grid.Row="0"
+                               Grid.Column="1"
+                               CornerRadius="10"
+                               Margin="0,0,0,0"
+                               Padding="0" >
+                            <StackLayout Orientation="Horizontal" 
+                                     BackgroundColor="{StaticResource ColorFondoGeneralBotonAceptar}"
+                                     Padding="5,0,0,0">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer />
+                                </StackLayout.GestureRecognizers>
+                                <Image HorizontalOptions="Center" 
+                                            VerticalOptions="CenterAndExpand"                                 
+                                            Source="done_launcher_adaptive_fore.png"
+                                            Margin="5,0,0,0"
+                                            HeightRequest="70"
+                                            WidthRequest="70" >
+                                </Image>
+                                <Label Text="Aceptar"
+                                            HorizontalOptions="Start"
+                                            FontSize="Medium"
+                                            FontAttributes="Bold"
+                                            TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                            VerticalOptions="Center"
+                                            Padding="0,0,0,0" 
+                                            Margin="0,5"
+                                            BackgroundColor="{StaticResource ColorFondoGeneralBotonAceptar}" />
+                                <StackLayout.Behaviors>
+                                    <behaviors:ViewTappedButtonBehavior Command="{Binding PopupBusquedaMonederoCerrar}" AnimationType="Fade"  />
+                                </StackLayout.Behaviors>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</mct:Popup>

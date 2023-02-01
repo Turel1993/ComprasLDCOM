@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="ComprasLDCOM.Popups.Carrito.PopupPageEfectivo"
+            xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+            xmlns:behaviors ="clr-namespace:ComprasLDCOM.API"
+            CanBeDismissedByTappingOutsideOfPopup="False"
+            Size="350,400"
+            Color="{StaticResource BackgroundPopUp}">
+
+    <StackLayout HeightRequest="315" 
+                 WidthRequest="330"
+                 BackgroundColor="White"   
+                 HorizontalOptions="Center"   
+                 VerticalOptions="CenterAndExpand"   
+                 Padding="0,0,0,0"
+                 Margin="0"
+                 IsVisible="true">
+
+        <Grid ColumnSpacing="0" RowSpacing="2" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="65" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Row="0" 
+                         Grid.Column="0"
+                         HorizontalOptions="Center"   
+                         VerticalOptions="Center"   
+                         Padding="10,0,10,0"
+                         Margin="5">
+                <Label FontSize="Title" 
+                       TextColor="{StaticResource Primary}"   
+                       HorizontalOptions="CenterAndExpand"   
+                       Text="Indique la cantidad con la que va a pagar"
+                       Margin="0,5,0,0" 
+                       FontAttributes="Bold"/>
+                
+            </StackLayout>
+
+            <Grid Grid.Row="1" 
+                  Grid.Column="0" 
+                  ColumnDefinitions="*" 
+                  Margin="5,0,5,5" >
+
+                <Frame CornerRadius="10" 
+                       BackgroundColor="{StaticResource Primary}" 
+                       Padding="0" 
+                       Margin="0,5,0,0" 
+                       x:Name="frmEfectivo"
+                       IsVisible="{Binding TabEfectivoVisible}"
+                       HeightRequest="230"
+                       VerticalOptions="StartAndExpand" >
+
+                    <StackLayout Margin="5">
+                        <StackLayout Padding="5" 
+                                     BackgroundColor="{StaticResource Primary}" >
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                            <Grid ColumnSpacing="0" 
+                                  RowSpacing="0" 
+                                  HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="StartAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".1*"/>
+                                    <ColumnDefinition Width=".4*"/>
+                                    <ColumnDefinition Width=".1*"/>
+                                    <ColumnDefinition Width=".4*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0" 
+                                       VerticalOptions="CenterAndExpand"
+                                       WidthRequest="50"
+                                       HeightRequest="50"
+                                       Source="money_launcher_adaptive_fore.png"
+                                       Margin="-10" 
+                                       HorizontalOptions="StartAndExpand"  />
+                                <Label Grid.Column="1" 
+                                       Text="Efectivo"
+                                       Padding="0" 
+                                       TextColor="{StaticResource ColorFuenteBotonesGeneral}" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold" 
+                                       HorizontalOptions="Start" 
+                                       VerticalOptions="CenterAndExpand" />
+                                <Label Grid.Column="2" 
+                                       Text="$ " 
+                                       TextColor="{StaticResource ColorFuenteBotonesGeneral}" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold" 
+                                       HorizontalOptions="End" 
+                                       VerticalOptions="CenterAndExpand"  />
+                                <Label Grid.Column="3" 
+                                       Text="{Binding Total_Efectivo, StringFormat='{0:N2}', Mode=OneWay}" 
+                                       TextColor="{StaticResource ColorFuenteBotonesGeneral}" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold"  
+                                       HorizontalTextAlignment="End"
+                                       VerticalOptions="CenterAndExpand"
+                                       Padding="0,0,5,0" />
+                            </Grid>
+                        </StackLayout>
+                        <Frame CornerRadius="10" 
+                               Padding="0" 
+                               Margin="0" 
+                               VerticalOptions="FillAndExpand">
+                            <StackLayout Margin="0"
+                                         Padding="0"
+                                         HorizontalOptions="FillAndExpand"  >
+
+                                <StackLayout x:Name="ExpandableContent_E"
+                                             Margin="0" 
+                                             Padding="0" 
+                                             VerticalOptions="CenterAndExpand" 
+                                             HorizontalOptions="CenterAndExpand" >
+                                    <Grid ColumnSpacing="0" 
+                                          RowSpacing="3" 
+                                          Margin="5" 
+                                          HorizontalOptions="Fill">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="10" />
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="30" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Button Grid.Row="0" 
+                                                Grid.Column="0" 
+                                                VerticalOptions="CenterAndExpand" 
+                                                HorizontalOptions="Center"
+                                                CornerRadius="10" 
+                                                Padding="0" 
+                                                Text = "$ 20" 
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30" 
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold"  
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0" 
+                                                Command="{Binding Path=BindingContext.EfectivoCantidad,Source={x:Reference ExpandableContent_E}}" 
+                                                CommandParameter="20" />
+
+                                        <Button Grid.Row="0" 
+                                                Grid.Column="1"
+                                                CornerRadius="10" 
+                                                Padding="0" 
+                                                Text = "$ 50" 
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                x:Name="btn50"
+                                                HeightRequest="30" 
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold"  
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0" 
+                                                Command="{Binding Path=BindingContext.EfectivoCantidad,Source={x:Reference ExpandableContent_E}}" 
+                                                CommandParameter="50" />
+
+                                        <Button Grid.Row="0" 
+                                                Grid.Column="2" 
+                                                CornerRadius="10" 
+                                                Padding="0" 
+                                                Text = "$ 100" 
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30" 
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold"  
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0" 
+                                                Command="{Binding Path=BindingContext.EfectivoCantidad,Source={x:Reference ExpandableContent_E}}" 
+                                                CommandParameter="100" />
+
+                                        <Button Grid.Row="0" 
+                                                Grid.Column="3" 
+                                                CornerRadius="10" 
+                                                Padding="0" 
+                                                Text = "$ 200" 
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30" 
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold"                                                 
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0" 
+                                                Command="{Binding Path=BindingContext.EfectivoCantidad,Source={x:Reference ExpandableContent_E}}" 
+                                                CommandParameter="200" />
+
+                                        <Button Grid.Row="0" 
+                                                Grid.Column="4" 
+                                                CornerRadius="10" 
+                                                Padding="0" 
+                                                Text = "$ 500" 
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30" 
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold" 
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0" 
+                                                Command="{Binding Path=BindingContext.EfectivoCantidad,Source={x:Reference ExpandableContent_E}}" 
+                                                CommandParameter="500" />
+
+                                        <Button Grid.Row="2" 
+                                                Grid.Column="0" 
+                                                VerticalOptions="CenterAndExpand" 
+                                                HorizontalOptions="Center"
+                                                CornerRadius="10" 
+                                                Padding="0"  
+                                                Text = "7" 
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30" 
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold"  
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0" 
+                                                Command="{Binding Path=BindingContext.EfectivoDigito,Source={x:Reference ExpandableContent_E}}" 
+                                                CommandParameter="7" />
+
+                                        <Button Grid.Row="2" 
+                                                Grid.Column="1" 
+                                                CornerRadius="10" 
+                                                Padding="0"  
+                                                Text = "8" 
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30"
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold"  
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0" 
+                                                Command="{Binding Path=BindingContext.EfectivoDigito,Source={x:Reference ExpandableContent_E}}" 
+                                                CommandParameter="8" />
+
+                                        <Button Grid.Row="2" 
+                                                Grid.Column="2" 
+                                                CornerRadius="10" 
+                                                Padding="0" 
+                                                Text = "9" 
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30" 
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold"  
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0" 
+                                                Command="{Binding Path=BindingContext.EfectivoDigito,Source={x:Reference ExpandableContent_E}}" 
+                                                CommandParameter="9" />
+
+                                        <Button Grid.Row="2" 
+                                                Grid.Column="3" 
+                                                CornerRadius="10" 
+                                                Padding="0"  
+                                                Text = "00"
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30"
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold"  
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0" 
+                                                Command="{Binding Path=BindingContext.EfectivoDigito,Source={x:Reference ExpandableContent_E}}" 
+                                                CommandParameter="00" />
+
+                                        <ImageButton Grid.Column="4"
+                                                     Grid.Row="2"
+                                                     VerticalOptions="CenterAndExpand" 
+                                                     HorizontalOptions="Center"  
+                                                     BackgroundColor="{StaticResource Primary}"
+                                                     CornerRadius="42" 
+                                                     Padding="-10" 
+                                                     Source="backspace_launcher_adaptive_fore.png"
+                                                     HeightRequest="30" 
+                                                     WidthRequest="60" 
+                                                     Margin="0" 
+                                                     Command="{Binding Path=BindingContext.EfectivoBorrarDigito,Source={x:Reference ExpandableContent_E}}"
+                                                     CommandParameter="DeleteDigit" />
+
+                                        <Button Grid.Row="3" 
+                                                Grid.Column="0" 
+                                                VerticalOptions="CenterAndExpand" 
+                                                HorizontalOptions="Center"
+                                                CornerRadius="10" 
+                                                Padding="0"  
+                                                Text = "4" 
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30" 
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold" 
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0" 
+                                                Command="{Binding Path=BindingContext.EfectivoDigito,Source={x:Reference ExpandableContent_E}}" 
+                                                CommandParameter="4" />
+
+                                        <Button Grid.Row="3" 
+                                                Grid.Column="1" 
+                                                CornerRadius="10" 
+                                                Padding="0"  
+                                                Text = "5" 
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30" 
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold" 
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0"
+                                                Command="{Binding Path=BindingContext.EfectivoDigito,Source={x:Reference ExpandableContent_E}}" 
+                                                CommandParameter="5" />
+
+                                        <Button Grid.Row="3" 
+                                                Grid.Column="2" 
+                                                CornerRadius="10" 
+                                                Padding="0" 
+                                                Text = "6"
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30"
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold"  
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0" 
+                                                Command="{Binding Path=BindingContext.EfectivoDigito,Source={x:Reference ExpandableContent_E}}"
+                                                CommandParameter="6" />
+
+                                        <Button Grid.Row="3" 
+                                                Grid.Column="3" 
+                                                CornerRadius="10" 
+                                                Padding="0" 
+                                                Text = "0" 
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30" 
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold" 
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0"
+                                                Command="{Binding Path=BindingContext.EfectivoDigito,Source={x:Reference ExpandableContent_E}}" 
+                                                CommandParameter="0" />
+
+                                        <Button Grid.Row="4" 
+                                                Grid.Column="0" 
+                                                VerticalOptions="CenterAndExpand"
+                                                HorizontalOptions="Center"
+                                                CornerRadius="10" 
+                                                Padding="0"  
+                                                Text = "1"
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30" 
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold" 
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0" 
+                                                Command="{Binding Path=BindingContext.EfectivoDigito,Source={x:Reference ExpandableContent_E}}" 
+                                                CommandParameter="1" />
+
+                                        <Button Grid.Row="4" 
+                                                Grid.Column="1" 
+                                                CornerRadius="10"
+                                                Padding="0" 
+                                                Text = "2"
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30" 
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold" 
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}" 
+                                                Margin="0,0,0,0" 
+                                                Command="{Binding Path=BindingContext.EfectivoDigito,Source={x:Reference ExpandableContent_E}}" 
+                                                CommandParameter="2" />
+
+                                        <Button Grid.Row="4"
+                                                Grid.Column="2" 
+                                                CornerRadius="10"
+                                                Padding="0" 
+                                                Text = "3" 
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30" 
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold"  
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}"
+                                                Margin="0,0,0,0" 
+                                                Command="{Binding Path=BindingContext.EfectivoDigito,Source={x:Reference ExpandableContent_E}}"
+                                                CommandParameter="3" />
+
+                                        <Button Grid.Row="4" 
+                                                Grid.Column="3" 
+                                                CornerRadius="10" 
+                                                Padding="0" 
+                                                Text="." 
+                                                TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                HeightRequest="30" 
+                                                WidthRequest="60" 
+                                                FontAttributes = "Bold" 
+                                                FontSize = "18" 
+                                                BackgroundColor="{StaticResource Primary}"
+                                                Margin="0,0,0,0"
+                                                Command="{Binding Path=BindingContext.EfectivoDigito,Source={x:Reference ExpandableContent_E}}"
+                                                CommandParameter="." />
+                                    </Grid>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="0" RowDefinitions="50" ColumnDefinitions=".3*,*,.3*" RowSpacing="5" ColumnSpacing="5" Padding="5">
+                <Frame CornerRadius="10" Grid.Column="1" Grid.Row="0" Padding="0" >
+                    <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" BackgroundColor="{StaticResource ColorFondoGeneralBotonAceptar}" >
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer />
+                        </StackLayout.GestureRecognizers>
+                        <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="*,*" ColumnSpacing="0" Margin="0" Padding="0" >
+                            <Image Grid.Column="0" 
+                                         Grid.Row="0" 
+                                         HorizontalOptions="CenterAndExpand" 
+                                         VerticalOptions="CenterAndExpand"
+                                         Margin="5,0,0,0"
+                                         HeightRequest="70"
+                                         WidthRequest="70"
+                                         Source="done_launcher_adaptive_fore.png"/>
+                            <Label Grid.Column="1" 
+                                   Grid.Row="0" 
+                                   Text="Aceptar"
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="Center"
+                                   FontSize="Medium" 
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource ColorFuenteBotonesGeneral}"                                    
+                                   Padding="0,0,0,0" 
+                                   Margin="0,5"
+                                   BackgroundColor="{StaticResource ColorFondoGeneralBotonAceptar}" />
+                        </Grid>
+                        <StackLayout.Behaviors>
+                            <behaviors:ViewTappedButtonBehavior Command="{Binding btnAceptarPopupEfectivo}" AnimationType="Fade"  />
+                        </StackLayout.Behaviors>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </Grid>
+    </StackLayout>
+
+</mct:Popup>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComprasLDCOM.Paginas.Inicio.DatosPage"
+             Title="DatosPage">
+    <Grid RowDefinitions="0.5*,*,*,*,*,*,*,*,*,0.5*" ColumnDefinitions="*">
+
+        <Frame Grid.Row="0"
+               Grid.Column="0"
+               CornerRadius="0"
+               BorderColor="Transparent"
+               Padding="0,0,0,0">
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <Label Text="Mi Perfil"
+                       FontSize="Large"/>
+            </StackLayout>
+        </Frame>
+        <Image Grid.Row="1" 
+               Grid.Column="0"
+               Source="circle_user_solid.svg"
+               VerticalOptions="Start"
+               HorizontalOptions="Fill"
+               WidthRequest="80"
+               HeightRequest="100"/>
+
+        <Frame Grid.Row="2"
+               Grid.Column="0"
+               CornerRadius="15"
+               BorderColor="Transparent"
+               Padding="0,0,0,0"
+               Margin="15,15,15,0">
+            <StackLayout>
+                <Grid RowDefinitions="*,*" >
+                    <Label Grid.Row="0"
+                           Text="Nombre"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Margin="10,10,0,0"/>
+                    <Label Grid.Row="1"
+                           Text="Luis Felipe"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Margin="10,10,10,-15"
+                           FontSize="Large"/>
+                </Grid>
+            </StackLayout>
+        </Frame>
+
+        <Frame Grid.Row="3"
+               Grid.Column="0"
+               CornerRadius="15"
+               BorderColor="Transparent"
+               Padding="0,0,0,0"
+               Margin="15,15,15,0">
+            <StackLayout>
+                <Grid RowDefinitions="*,*" >
+                    <Label Grid.Row="0"
+                           Text="Primer Apellido"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Margin="10,10,0,0"/>
+                    <Label Grid.Row="1"
+                           Text="Tejeda"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Margin="10,10,10,-15"
+                           FontSize="Large"/>
+                </Grid>
+            </StackLayout>
+        </Frame>
+
+        <Frame Grid.Row="4"
+               Grid.Column="0"
+               CornerRadius="15"
+               BorderColor="Transparent"
+               Padding="0,0,0,0"
+               Margin="15,15,15,0">
+            <StackLayout>
+                <Grid RowDefinitions="*,*" >
+                    <Label Grid.Row="0"
+                           Text="Segundo Apellido"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Margin="10,10,0,0"/>
+                    <Label Grid.Row="1"
+                           Text="Romero"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Margin="10,10,10,-15"
+                           FontSize="Large"/>
+                </Grid>
+            </StackLayout>
+        </Frame>
+
+        <Frame Grid.Row="5"
+               Grid.Column="0"
+               CornerRadius="15"
+               BorderColor="Transparent"
+               Padding="0,0,0,0"
+               Margin="15,15,15,0">
+            <StackLayout>
+                <Grid RowDefinitions="*,*" >
+                    <Label Grid.Row="0"
+                           Text="Correo Electronico"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Margin="10,10,0,0"/>
+                    <Label Grid.Row="1"
+                           Text="ltejeda@aph.mx"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Margin="10,10,10,-15"
+                           FontSize="Large"/>
+                </Grid>
+            </StackLayout>
+        </Frame>
+
+
+        <Grid Grid.Row="6"
+                Margin="15,15,15,0"
+                RowDefinitions="*" 
+                ColumnDefinitions=".6*,*"
+                ColumnSpacing="15">
+
+            <Frame 
+                    Grid.Column="0"
+                    CornerRadius="15"
+                    BorderColor="Transparent"
+                       
+                    Padding="0,0,0,0"
+                    >
+                <StackLayout>
+                    <Label Text="Lada"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Start"
+                                Margin="10,10,10,0"
+                                   
+                        />
+                    <Label Margin="10,10,10,0"
+                                Text="00"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Start"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame 
+                    Grid.Column="1"
+                    CornerRadius="15"
+                    BorderColor="Transparent"
+                    Padding="0,0,0,0"
+                    >
+                <StackLayout >
+                    <Label Text="Numero de telefono"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Margin="10,10,10,0"/>
+
+                    <Label Text="2281913621"
+                           Margin="10,10,10,0"
+                           FontSize="Large"
+                                 />
+                </StackLayout>
+            </Frame>
+
+        </Grid>
+
+
+        <Frame Grid.Row="7"
+               Grid.Column="0"
+               CornerRadius="15"
+               BorderColor="Transparent"
+               Padding="0,0,0,0"
+               Margin="15,15,15,0">
+            <StackLayout>
+                <Grid RowDefinitions="*,*" >
+                    <Label Grid.Row="0"
+                           Text="Sexo"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Margin="10,10,0,0"/>
+                    <Label Grid.Row="1"
+                           Text="Masculino"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           Margin="10,10,10,-15"
+                           FontSize="Large"/>
+                </Grid>
+            </StackLayout>
+        </Frame>
+
+        <Frame Grid.Row="8"
+               Grid.Column="0"
+               CornerRadius="15"
+               BorderColor="Transparent"
+               Padding="0,0,15,0"
+               Margin="230,15,15,10">
+            <StackLayout>
+                <Grid RowDefinitions="*,*" >
+                    <Label Grid.Row="0"
+                           Text="Fecha de nacimiento"
+                           VerticalOptions="Start"
+                           HorizontalOptions="End"
+                           Margin="10,10,0,0"/>
+                    <Label Grid.Row="1"
+                           Text="20-01-1993"
+                           VerticalOptions="Start"
+                           HorizontalOptions="End"
+                           Margin="10,10,10,-20"
+                           FontSize="Large"/>
+                </Grid>
+            </StackLayout>
+        </Frame>
+
+        <Frame Grid.Row="9"
+               Grid.Column="0"
+               CornerRadius="15"
+               BorderColor="Transparent"
+               Padding="0,0,0,0"
+               Margin="15,0,250,10">
+            <StackLayout>
+                <Grid RowDefinitions="*,*" >
+                    <Label Grid.Row="0"
+                           Text="Cambiar contraseña"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           TextDecorations="Underline"
+                           Margin="10,10,0,0"/>
+                </Grid>
+            </StackLayout>
+        </Frame>
+
+    </Grid>
+</ContentPage>

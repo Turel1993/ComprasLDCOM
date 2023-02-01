@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComprasLDCOM.Paginas.Cuenta.RegistroDatosPage"
+             
+             Title="Registro"
+             NavigationPage.HasNavigationBar="false"
+             BackgroundColor="{StaticResource ColorCuentaFondo}">
+
+    <VerticalStackLayout>
+        <Grid RowDefinitions="*,*"
+              VerticalOptions="StartAndExpand">
+
+            <Frame Grid.Row="0"
+                   VerticalOptions="StartAndExpand"
+                   BorderColor="Transparent"
+                   CornerRadius="0"
+                   >
+                <Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*"
+                      Padding="0"
+                      VerticalOptions="StartAndExpand"
+                      RowSpacing="5">
+                      
+                    <Label Grid.Row="0" 
+                        Text="Ingresa tus datos"
+                        FontAttributes="Bold"
+                        FontSize="Medium"/>
+                    <Entry 
+                        Placeholder="Nombre(s)*"
+                        Text="{Binding Nombre}"
+                        Grid.Row="1"/>
+                    <Entry 
+                        Placeholder="Apellido Paterno*"
+                        Text="{Binding ApellidoPaterno}"
+                        Grid.Row="2"/>
+                    <Entry 
+                        Placeholder="Apellido Materno*"
+                        Text="{Binding ApellidoMaterno}"
+                        Grid.Row="3"/>
+                    <Picker Title="Selecciona tu genero"
+                            Grid.Row="4"
+                            SelectedItem="{Binding Sexo}">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Femenino</x:String>
+                                <x:String>Masculino</x:String>
+                                <x:String>Otro</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <StackLayout Grid.Row="5">
+                        <Grid ColumnDefinitions="*,2*"
+                              VerticalOptions="StartAndExpand"
+                              ColumnSpacing="20">
+
+                            <Picker 
+                                    ItemsSource="{Binding LadasList}"
+                                    ItemDisplayBinding="{Binding ladaCompuesta}"
+                                    SelectedItem="{Binding LadaCode, Mode=TwoWay}"
+                                    Title="Lada"
+                                    />
+
+                            <Entry 
+                                Keyboard="Telephone"
+                                Text="{Binding Telefono}"
+                                Placeholder="Numero Telefonico"
+                                Grid.Column="1"/>
+
+                        </Grid>
+                    </StackLayout>
+                    <Entry 
+                        Placeholder="Direccion E-mail"
+                        Text="{Binding Correo}"
+                        Grid.Row="6"/>
+                    <StackLayout Grid.Row="7">
+                        <Grid ColumnDefinitions="*,2*"
+                              VerticalOptions="StartAndExpand"
+                              ColumnSpacing="20">
+
+                            <DatePicker 
+                                Grid.Column="0"
+                                Format="dd/MM/yyyy"
+                                MinimumDate="01/01/1940"
+                                Date="{Binding FechaNacimiento}"
+                                />
+
+                            <Entry 
+                                Keyboard="Numeric"
+                                Text="{Binding CodigoPostal}"
+                                Placeholder="Codigo Postal"
+                                Grid.Column="1"/>
+
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout Grid.Row="8">
+                        <Grid ColumnDefinitions="6*,*">
+                            <Entry 
+                                x:Name="contra"
+                                Placeholder="Contraseña"
+                                Text="{Binding ClaveSocio}"
+                                Grid.Column="0"
+                                IsPassword="True"/>
+                            
+                            <ImageButton 
+                                Grid.Column="1"
+                                Pressed="OnButtonPressed"
+                                Released="OnButtonReleased"
+                                HeightRequest="20"
+                                Opacity="0.4"
+                                Source="eye.svg"         
+                                />
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout Grid.Row="9">
+                        <Grid ColumnDefinitions="6*,*">
+                            <Entry 
+                                x:Name="contraConfirma"
+                                Placeholder="Contraseña"
+                                Text="{Binding ClaveSocioConfirma}"
+                                Grid.Column="0"
+                                IsPassword="True"/>
+
+                            <ImageButton 
+                                Grid.Column="1"
+                                Pressed="OnButtonPressedConf"
+                                Released="OnButtonReleasedConf"
+                                HeightRequest="20"
+                                Opacity="0.4"
+                                Source="eye.svg"         
+                                />
+                        </Grid>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+            <Frame Grid.Row="1"
+                   BorderColor="Transparent"
+                   CornerRadius="0">
+                <Grid RowDefinitions="*,*,*,*"
+                      ColumnDefinitions="*,4*"
+                      Padding="0"
+                      VerticalOptions="StartAndExpand"
+                      RowSpacing="5">
+
+                    <CheckBox 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalOptions="Start" 
+                    />
+                    <VerticalStackLayout 
+                        
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        >
+                        <HorizontalStackLayout>
+                            <Label Text="He leido y acepto " />
+                            <Label Text="Terminos y condiciones "
+                                   TextDecorations="Underline"
+                                   TextColor="LightSkyBlue">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Terminos}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <Label Text="así como el " />
+                            <Label Text="Aviso de privacidad"
+                                   TextDecorations="Underline"
+                                   TextColor="LightSkyBlue">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Aviso}" />
+                                    
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </HorizontalStackLayout>
+
+                    </VerticalStackLayout>
+
+                    <Button 
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Text="Crear Cuenta"
+                        Command="{Binding RegistrarDatos}"
+                        IsEnabled="{Binding HabilitarBtnRegistro}"
+                        FontAttributes="Bold"
+                        FontSize="Subtitle"
+                        />
+
+                    <Label Margin="0,10,0,0"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Text="Ya tengo cuenta"
+                           HorizontalOptions="Center"/>
+                    <Button Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Text="Iniciar Sesion"
+                            Command="{Binding IniciarSesion}"
+                            
+                            TextColor="CornflowerBlue"
+                            HorizontalOptions="Center"/>
+
+                </Grid>
+            </Frame>
+
+        </Grid>
+    </VerticalStackLayout>
+    
+    
+    
+</ContentPage>

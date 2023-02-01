@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComprasLDCOM.Paginas.Carrito.Payment"
+             xmlns:local="clr-namespace:ComprasLDCOM.Modelos.Carrito"
+             xmlns:model="clr-namespace:ComprasLDCOM.Modelos.Carrito"
+             xmlns:behaviors ="clr-namespace:ComprasLDCOM.API"
+             BackgroundColor="{StaticResource ColorCarritoFondo}"
+             NavigationPage.HasNavigationBar="false" 
+             NavigationPage.HasBackButton="false"
+             Shell.NavBarIsVisible="False"> 
+
+    <ContentPage.BindingContext>
+        <local:PaymentViewModel/>
+    </ContentPage.BindingContext>
+    
+    <AbsoluteLayout>
+        <Grid ColumnSpacing="0" RowSpacing="2" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height=".4*" />
+                <RowDefinition Height=".4*" />
+                <RowDefinition Height="65" />
+                <RowDefinition Height="65" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" 
+                  Grid.Column="0" 
+                  ColumnDefinitions="50,*,50" BackgroundColor="{StaticResource ColorCarritoFondo}" >
+                <BoxView Grid.Column="0" 
+                         Grid.Row="0" 
+                         Color="{StaticResource principalColor}"/>
+                <StackLayout>
+                <ImageButton Grid.Column="0" 
+                         Grid.Row="0"
+                         HorizontalOptions="CenterAndExpand" 
+                         VerticalOptions="CenterAndExpand"
+                         WidthRequest="50"
+                         HeightRequest="50"
+                         Source="back_launcher_adaptive_fore.png" 
+                         Clicked="btnBack_Clicked"
+                         Margin="20,0,0,0"/>
+                    <StackLayout.Behaviors>
+                        <behaviors:ViewTappedButtonBehavior AnimationType="Fade"  />
+                    </StackLayout.Behaviors>
+                </StackLayout>
+            
+                <BoxView Grid.Column="1" Grid.Row="0" />
+                <Label Grid.Column="1" 
+                       Grid.Row="0"
+                       Text="Liquidación"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource ColorTituloGeneral}"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       Margin="0"/>
+
+                <BoxView Grid.Column="2" Grid.Row="0" Color="{StaticResource principalColor}"/>
+            </Grid>
+
+            <Frame Grid.Row="1" Grid.Column="0" BorderColor="{StaticResource ColorPaymentFondoDatosGenerales}" CornerRadius="10" BackgroundColor="{StaticResource ColorPaymentFondoDatosGenerales}" Margin="5,0,5,3" Padding="0, 0, 0, 0" HasShadow="True">
+                <Grid RowDefinitions="50" ColumnDefinitions="*">
+                    <Grid RowDefinitions="30,30" ColumnDefinitions="*,*">
+                        <Label Grid.Column="0" 
+                               Grid.Row="0" 
+                               Text="Tipo Documento" 
+                               FontSize="Micro" 
+                               FontAttributes="Bold" 
+                               TextColor="{StaticResource ColorPaymentFuenteTituloDatosGenerales}" 
+                               HorizontalOptions="CenterAndExpand" 
+                               VerticalOptions="StartAndExpand" 
+                               Margin="0,0"/>
+
+                        <Label Grid.Column="0" 
+                               Grid.Row="0" 
+                               Text="{Binding DGV_Documento}" 
+                               FontSize="Micro" 
+                               FontAttributes="Bold" 
+                               TextColor="{StaticResource ColorPaymentFuenteDatosGenerales}" 
+                               HorizontalOptions="CenterAndExpand" 
+                               VerticalOptions="EndAndExpand" 
+                               Margin="0,0"
+                               TextTransform="Uppercase"/>                        
+
+                        <StackLayout Grid.Column="1" Grid.Row="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Cambiarmonedero}" 
+                                                      CommandParameter="{Binding Text, Source={x:Reference LbMonedero}}" />
+                            </StackLayout.GestureRecognizers>
+
+                            <Label Grid.Column="1" 
+                                   Grid.Row="0" 
+                                   Text="Monedero" 
+                                   FontSize="Micro" 
+                                   FontAttributes="Bold" 
+                                   TextColor="{StaticResource ColorPaymentFuenteTituloDatosGenerales}" 
+                                   HorizontalOptions="CenterAndExpand" 
+                                   VerticalOptions="StartAndExpand" 
+                                   Margin="0,0"/>
+
+                            <Label x:Name="LbMonedero"
+                                   Grid.Column="1" 
+                                   Grid.Row="1" 
+                                   FontSize="Micro" 
+                                   Text="{Binding DGV_Monedero}"
+                                   TextColor="{StaticResource ColorPaymentFuenteDatosGenerales}"
+                                   TextDecorations="Underline"
+                                   FontAttributes="Bold"                                
+                                   HorizontalOptions="CenterAndExpand" 
+                                   VerticalOptions="EndAndExpand" 
+                                   Margin="0,0"/>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </Frame>
+
+            <Grid Grid.Row="2" Grid.Column="0" ColumnDefinitions="*" HorizontalOptions="Fill" VerticalOptions="Start" Padding="5,0">
+                <Frame Grid.Column="0" 
+                       Grid.Row="0" 
+                       CornerRadius="10"
+                       BackgroundColor="{Binding BGColor_TotalPagar}"
+                       Padding="4" 
+                       IsClippedToBounds="True" 
+                       x:Name="frameTotalPagar1"
+                       VerticalOptions="End" >
+
+                    <StackLayout Grid.Column="1" 
+                                 Grid.Row="0" 
+                                 Padding="0" 
+                                 Margin="0,2,0,2">
+                        <Grid ColumnSpacing="0" 
+                              RowSpacing="-6" 
+                              Margin="0" 
+                              Padding="1" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="30" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".4*"/>
+                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width=".5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Grid.Row="0"   
+                                   FontSize="Medium"  
+                                   FontAttributes="Bold" 
+                                   Text="Subtotal:"  
+                                   TextColor="{StaticResource ColorPaymentFuenteTotales}" 
+                                   VerticalOptions="CenterAndExpand" 
+                                   HorizontalOptions="StartAndExpand" 
+                                   Margin="5,0,0,0" />
+                            <Label Grid.Column="1" 
+                                   Grid.Row="0"   
+                                   FontSize="Medium"  
+                                   FontAttributes="Bold" 
+                                   Text="$"  
+                                   TextColor="{StaticResource ColorPaymentFuenteTotales}" 
+                                   VerticalOptions="CenterAndExpand" 
+                                   HorizontalOptions="CenterAndExpand" 
+                                   Margin="1" />
+                            <Label Grid.Column="2" 
+                                   Grid.Row="0"  
+                                   Grid.ColumnSpan="2" 
+                                   FontSize="Medium"  
+                                   FontAttributes="Bold" 
+                                   Text="{Binding SubTotal, StringFormat='{0:N2}', Mode=OneWay}"  
+                                   TextColor="{StaticResource ColorPaymentFuenteTotales}" 
+                                   HorizontalTextAlignment="End"
+                                   VerticalOptions="CenterAndExpand"
+                                   Margin="2,0,2,0"  />
+
+                            <Label Grid.Column="0" 
+                                   Grid.Row="1"   
+                                   FontSize="Medium"  
+                                   FontAttributes="Bold" 
+                                   Text="Descuentos:"  
+                                   TextColor="{StaticResource ColorPaymentFuenteTotales}" 
+                                   VerticalOptions="CenterAndExpand" 
+                                   HorizontalOptions="StartAndExpand" 
+                                   Margin="5,0,0,0" />
+                            <Label Grid.Column="1" 
+                                   Grid.Row="1"   
+                                   FontSize="Medium"  
+                                   FontAttributes="Bold" 
+                                   Text="$"  
+                                   TextColor="{StaticResource ColorPaymentFuenteTotales}" 
+                                   VerticalOptions="CenterAndExpand" 
+                                   HorizontalOptions="CenterAndExpand" 
+                                   Margin="1" />
+                            <Label Grid.Column="2" 
+                                   Grid.Row="1"   
+                                   FontSize="Medium"  
+                                   FontAttributes="Bold" 
+                                   Text="{Binding Descuentos, StringFormat='{0:N2}', Mode=OneWay}"  
+                                   TextColor="{StaticResource ColorPaymentFuenteTotales}" 
+                                   HorizontalTextAlignment="End"
+                                   VerticalOptions="CenterAndExpand"
+                                   Margin="2,0,2,0" />
+
+                            <Label Grid.Column="0" 
+                                   Grid.Row="2"   
+                                   FontSize="Medium"  
+                                   FontAttributes="Bold" 
+                                   Text="Promociones:"  
+                                   TextColor="{StaticResource ColorPaymentFuenteTotales}" 
+                                   VerticalOptions="CenterAndExpand" 
+                                   HorizontalOptions="StartAndExpand" 
+                                   Margin="5,0,0,0" />
+                            <Label Grid.Column="1" 
+                                   Grid.Row="2"   
+                                   FontSize="Medium"  
+                                   FontAttributes="Bold" 
+                                   Text="$"  
+                                   TextColor="{StaticResource ColorPaymentFuenteTotales}" 
+                                   VerticalOptions="CenterAndExpand" 
+                                   HorizontalOptions="CenterAndExpand" 
+                                   Margin="1" />
+                            <Label Grid.Column="2" 
+                                   Grid.Row="2"   
+                                   FontSize="Medium"  
+                                   FontAttributes="Bold" 
+                                   Text="{Binding Promociones, StringFormat='{0:N2}', Mode=OneWay}"  
+                                   TextColor="White" 
+                                   HorizontalTextAlignment="End"
+                                   VerticalOptions="CenterAndExpand"
+                                   Margin="2,0,2,0" />
+                            
+                            <Label Grid.Column="0" 
+                                   Grid.Row="3"  
+                                   Grid.RowSpan="2"
+                                   FontSize="Medium"  
+                                   FontAttributes="Bold" 
+                                   Text=""  
+                                   TextColor="{StaticResource ColorPaymentFuenteTotales}" 
+                                   HorizontalTextAlignment="End"
+                                   VerticalOptions="StartAndExpand"
+                                   Margin="5,0,0,0" />
+                            <BoxView Grid.Row="3" 
+                                     Grid.Column="2" 
+                                     Grid.RowSpan="2"
+                                     IsVisible="true"
+                                     BackgroundColor="{StaticResource ColorPaymentFuenteTotales}"
+                                     HeightRequest="1"
+                                     VerticalOptions="StartAndExpand" 
+                                     HorizontalOptions="StartAndExpand"
+                                     Margin="2,5,0,0" />
+
+                            <Label Grid.Column="0" 
+                                   Grid.Row="4"  
+                                   FontSize="Medium"  
+                                   FontAttributes="Bold" 
+                                   Text="Total a Pagar:"  
+                                   TextColor="{StaticResource ColorPaymentFuenteTotales}" 
+                                   VerticalOptions="CenterAndExpand" 
+                                   HorizontalOptions="StartAndExpand" 
+                                   Margin="5,0,0,0" />
+                            <Label Grid.Column="1" 
+                                   Grid.Row="4"   
+                                   FontSize="Medium"  
+                                   FontAttributes="Bold" 
+                                   Text="$"  
+                                   TextColor="{StaticResource ColorPaymentFuenteTotales}" 
+                                   VerticalOptions="CenterAndExpand" 
+                                   HorizontalOptions="CenterAndExpand" 
+                                   Margin="1" />
+                            <Label Grid.Column="2" 
+                                   Grid.Row="4"  
+                                   FontSize="Medium"  
+                                   FontAttributes="Bold"                            
+                                   Text="{Binding Total, StringFormat='{0:N2}', Mode=OneWay}"  
+                                   TextColor="{StaticResource ColorPaymentFuenteTotales}" 
+                                   HorizontalTextAlignment="End"
+                                   VerticalOptions="EndAndExpand"
+                                   Margin="2,0,2,0"  />
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+
+            <Grid Grid.Row="3"
+                  Grid.Column="0" 
+                  RowDefinitions="*"
+                  ColumnDefinitions="*">
+
+                <Grid Grid.Row="0" 
+                      Grid.Column="0" 
+                      RowDefinitions="*" 
+                      ColumnDefinitions="700" 
+                      HorizontalOptions="CenterAndExpand" 
+                      Margin ="0,0,0,0"
+                      Padding="0" 
+                      BackgroundColor="Transparent">
+
+                    <CarouselView ItemsSource="{Binding Pestana_FormaPagoList}"
+                                  Margin="1,0,0,0" 
+                                  x:Name="CollviewPagos" 
+                                  HorizontalScrollBarVisibility="Always"  
+                                  EmptyView="Formas de Pago vacías" 
+                                  PeekAreaInsets="290" 
+                                  IndicatorView="indicatorView">
+                        <CarouselView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="1" />
+                        </CarouselView.ItemsLayout>
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+
+                                <Frame Grid.Column="0" 
+                                       Grid.Row="0" 
+                                       CornerRadius="10" 
+                                       Padding="0,0,0,0" 
+                                       BackgroundColor="{Binding BGColor_Tab}" 
+                                       Margin="0,0,0,0" 
+                                       WidthRequest="110"
+                                       HeightRequest="150"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="StartAndExpand"
+                                       x:Name="{Binding NombreTab}" >
+                                    <StackLayout Grid.Column="0"
+                                                 Grid.Row="0" 
+                                                 Margin="0" 
+                                                 Padding="5,0" 
+                                                 VerticalOptions="Center"
+                                                 HorizontalOptions="Center" 
+                                                 HeightRequest="150" 
+                                                 WidthRequest="110">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer />
+                                            <!--Command="{Binding Path=BindingContext.TabActivo,Source={x:Reference CollviewPagos}}"
+                                                CommandParameter="{Binding EtiquetaTab}" />-->
+                                        </StackLayout.GestureRecognizers>                                        
+                                        <Grid x:DataType="model:FormasPago_Visual" 
+                                              ColumnSpacing="0" 
+                                              RowSpacing="1" 
+                                              Margin="0" 
+                                              Padding="0"
+                                              WidthRequest="120"
+                                              HeightRequest="280"  
+                                              x:Name="gridPestanas">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="70" />
+                                                <RowDefinition Height="19" />
+                                                <RowDefinition Height="15" />
+                                                <RowDefinition Height="40" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="33*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Grid.Column="1" 
+                                                         Grid.Row="0"
+                                                         HorizontalOptions="CenterAndExpand" 
+                                                         VerticalOptions="CenterAndExpand"
+                                                         WidthRequest="90"
+                                                         HeightRequest="90"
+                                                         Source="{Binding Icono}"
+                                                         Margin="0,0" 
+                                                         />
+                                            <Label Grid.Column="1" 
+                                                   Grid.Row="1"
+                                                   Text="{Binding Nombre1}"
+                                                   HorizontalOptions="CenterAndExpand"
+                                                   FontSize="Small" 
+                                                   FontAttributes="Bold"
+                                                   TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                   VerticalOptions="StartAndExpand"
+                                                   Padding="0,0,0,0" 
+                                                   Margin="0,0,0,0"/>
+                                            <Label Grid.Column="1" 
+                                                   Grid.Row="2"
+                                                   Text="{Binding Nombre2}"
+                                                   HorizontalOptions="CenterAndExpand"
+                                                   FontSize="Small" 
+                                                   FontAttributes="Bold"
+                                                   TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                   VerticalOptions="StartAndExpand"
+                                                   Padding="0,0,0,0" 
+                                                   Margin="0,0,0,0"/>
+                                            <Label Grid.Column="1" 
+                                                   Grid.Row="3"
+                                                   Text="{Binding MontoTab}"
+                                                   HorizontalOptions="CenterAndExpand"
+                                                   FontSize="Small" 
+                                                   FontAttributes="Bold"
+                                                   TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                                   VerticalOptions="CenterAndExpand"
+                                                   Padding="0,0,0,0" 
+                                                   Margin="0,0,0,0"/>
+                                        </Grid>
+                                        <StackLayout.Behaviors>
+                                            <behaviors:ViewTappedButtonBehavior Command="{Binding Path=BindingContext.TabActivo,Source={x:Reference CollviewPagos}}"
+                                                CommandParameter="{Binding EtiquetaTab}" AnimationType="Fade"  />
+                                        </StackLayout.Behaviors>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                </Grid>
+
+                <IndicatorView x:Name="indicatorView"
+                               IndicatorColor="{StaticResource ColorPaymentIndicadorFormasPago}"
+                               SelectedIndicatorColor="{StaticResource ColorPaymentIndicadorSeleccionadoFormasPago}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="EndAndExpand"
+                               Margin="0,0,0,5"/>
+            </Grid>
+
+            <Grid Grid.Row="4" 
+                  Grid.Column="0" 
+                  RowDefinitions="60" 
+                  ColumnDefinitions="*" 
+                  VerticalOptions="CenterAndExpand">
+                <Frame CornerRadius="10" 
+                       BackgroundColor="CadetBlue"
+                       Padding="0" 
+                       Margin="5,0" >
+                    <Grid ColumnSpacing="5" 
+                          RowSpacing="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".5*" />
+                            <ColumnDefinition Width=".5*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0"
+                               Grid.Column="0"
+                               Text="Capturado"
+                               HorizontalOptions="CenterAndExpand"
+                               FontSize="Medium" 
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource ColorPaymentFuenteTotales}"
+                               VerticalOptions="Center" 
+                               Padding="0" 
+                               Margin="0"
+                               HorizontalTextAlignment="Center"/>
+                        <Label Grid.Row="1" 
+                               Grid.Column="0"
+                               Text="{Binding Total_MontoCapturado, StringFormat='$ {0:N2}', Mode=OneWay}"  
+                               HorizontalOptions="CenterAndExpand"
+                               FontSize="Medium" 
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource ColorPaymentFuenteTotales}"
+                               VerticalOptions="Center"
+                               Padding="0" 
+                               Margin="0"
+                               x:Name="lblMontoTotalCapturado"
+                               HorizontalTextAlignment="Center" />
+                        <Label Grid.Row="0"
+                               Grid.Column="1"
+                               Text="Restante"
+                               HorizontalOptions="CenterAndExpand"
+                               FontSize="Medium" 
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource ColorPaymentFuenteTotales}"
+                               VerticalOptions="Center" 
+                               Padding="0" 
+                               Margin="0"
+                               HorizontalTextAlignment="Center"/>
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding Total_MontoRestante, StringFormat='$ {0:N2}', Mode=OneWay}"  
+                               HorizontalOptions="CenterAndExpand"
+                               FontSize="Medium" 
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource ColorPaymentFuenteTotales}"
+                               VerticalOptions="Center"
+                               Padding="0" 
+                               Margin="0"
+                               x:Name="lblMontoTotalRestante"
+                               HorizontalTextAlignment="Center" />
+                    </Grid>
+                </Frame>
+            </Grid>
+
+            <Grid Grid.Row="5" Grid.Column="0" RowDefinitions="55" ColumnDefinitions="*,*" ColumnSpacing="5" Padding="5,5,5,5">
+                <Frame Grid.Column="0" Grid.Row="0" CornerRadius="10" Margin="0" Padding="0" >
+                    <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal" BackgroundColor="{StaticResource ColorFondoGeneralBotonAceptar}">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer  />
+                        </StackLayout.GestureRecognizers>
+                        <Grid Grid.Column="0" 
+                              Grid.Row="0" 
+                              ColumnDefinitions="*,*" 
+                              ColumnSpacing="0" 
+                              Margin="0"
+                              Padding="0" >
+
+                            <Image Grid.Column="0" 
+                                         Grid.Row="0"
+                                         HorizontalOptions="CenterAndExpand" 
+                                         VerticalOptions="CenterAndExpand"
+                                         WidthRequest="70"
+                                         HeightRequest="70"
+                                         Source="money_launcher_adaptive_fore.png"
+                                         Margin="0" 
+                                         />
+
+                            <Label Grid.Column="1" 
+                                   Grid.Row="0"
+                                   Text="Cobrar"
+                                   HorizontalOptions="StartAndExpand"
+                                   FontSize="Medium" 
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                   VerticalOptions="Center"
+                                   Padding="-10,0,0,0" 
+                                   Margin="0" />
+                        </Grid>
+                        <StackLayout.Behaviors>
+                            <behaviors:ViewTappedButtonBehavior Command="{Binding btnCobrar}" AnimationType="Fade"  />
+                        </StackLayout.Behaviors>
+                    </StackLayout>
+                </Frame>
+                
+                <Frame Grid.Column="1" Grid.Row="0" CornerRadius="10" Margin="0" Padding="0" >
+                    <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal" BackgroundColor="{StaticResource ColorFondoGeneralBotonCancelar}">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer  />
+                        </StackLayout.GestureRecognizers>
+                        <Grid Grid.Column="0" 
+                              Grid.Row="0" 
+                              ColumnDefinitions="*,*" 
+                              ColumnSpacing="0" 
+                              Margin="0"
+                              Padding="0" >
+
+                            <Image Grid.Column="0" 
+                                         Grid.Row="0"
+                                         HorizontalOptions="CenterAndExpand" 
+                                         VerticalOptions="CenterAndExpand"
+                                         WidthRequest="80"
+                                         HeightRequest="75"
+                                         Source="cancel_cart_launcher_adaptive_fore.png"
+                                         Margin="0" />
+
+                            <Label Grid.Column="1" 
+                                   Grid.Row="0"
+                                   Text="Cancelar"
+                                   HorizontalOptions="StartAndExpand"
+                                   FontSize="Medium" 
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource ColorFuenteBotonesGeneral}"
+                                   VerticalOptions="Center"
+                                   Padding="-15,0,0,0" 
+                                   Margin="0" />
+                        </Grid>
+                        <StackLayout.Behaviors>
+                            <behaviors:ViewTappedButtonBehavior Command="{Binding btnCancelar}" AnimationType="Fade"  />
+                        </StackLayout.Behaviors>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+
+        </Grid>
+
+    </AbsoluteLayout>
+</ContentPage>

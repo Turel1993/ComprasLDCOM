@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           x:Class="ComprasLDCOM.Popups.Cuenta.DomiciliosPopUp"
+           CanBeDismissedByTappingOutsideOfPopup="True"
+           Color="Transparent"
+           Size="300,600"
+           >
+
+    <StackLayout>
+        <Frame VerticalOptions="FillAndExpand"
+               HorizontalOptions="FillAndExpand"
+               Padding="5"
+               BorderColor="Transparent">
+
+            <Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*">
+                <Label 
+                    Grid.Row="0"
+                    Margin="10"
+                    Background="Red"   
+                    Text="Alias de domicilio"
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"/>
+                <Entry Grid.Column="1" />
+                <Label 
+                    Grid.Row="2"
+                    Margin="10"
+                    Background="Red"   
+                    Text="Telefono"
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"/>
+                <Entry Keyboard="Telephone"
+                    Grid.Row="3" />
+                <Label 
+                    Grid.Row="4"
+                    Margin="10"
+                    Background="Red"   
+                    Text="Codigo postal"
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"/>
+                <Entry Keyboard="Numeric" 
+                    Grid.Column="5" />
+                <Label
+                    Grid.Row="6"
+                    Text="Selecciona Estado" />
+                <Picker 
+                    Grid.Row="7"
+                    Title="Selecciona tu Municipio"                        
+                    ItemsSource="{Binding EstadosList}"
+                    ItemDisplayBinding="{Binding Nombre}"
+                    SelectedItem="{Binding Estado_IdSelected,Mode=TwoWay}"
+                    IsEnabled="True"
+                    HorizontalTextAlignment="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="0" 
+                    FontSize="Medium" 
+                    BackgroundColor="White" />
+                <Label
+                    Grid.Row="8"
+                    Text="Selecciona Municipio" />
+                <Picker 
+                    Grid.Row="9"
+                    Title="Selecciona tu Municipio"                        
+                    ItemsSource="{Binding MunicipiosList}"
+                    ItemDisplayBinding="{Binding Nombre}"
+                    SelectedItem="{Binding Municipio_IdSelected,Mode=TwoWay}"
+                    IsEnabled="True"
+                    HorizontalTextAlignment="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="0" 
+                    FontSize="Medium" 
+                    BackgroundColor="White" />
+                <Label
+                    Grid.Row="10"
+                    Text="Selecciona Colonia" />
+                <Picker 
+                    Grid.Row="11"
+                    Title="Selecciona tu Colonia"                        
+                    ItemsSource="{Binding ColoniasList}"
+                    ItemDisplayBinding="{Binding Nombre}"
+                    SelectedItem="{Binding Colonia_IdSelected,Mode=TwoWay}"
+                    IsEnabled="True"
+                    HorizontalTextAlignment="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="0" 
+                    FontSize="Medium" 
+                    BackgroundColor="White" />
+
+
+            </Grid>
+        </Frame>
+    </StackLayout>
+
+
+</mct:Popup>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ComprasLDCOM.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localInicio="clr-namespace:ComprasLDCOM.Paginas.Inicio"
+    xmlns:localCuenta="clr-namespace:ComprasLDCOM.Paginas.Cuenta"
+    xmlns:localCarrito="clr-namespace:ComprasLDCOM.Paginas.Carrito"
+    xmlns:localFavoritos="clr-namespace:ComprasLDCOM.Paginas.Favoritos"
+    Shell.FlyoutBehavior="Disabled">
+
+    <TabBar x:Name="MyTabBar">
+        <Tab Title="Inicio" Icon="house_solid.svg">
+            <ShellContent ContentTemplate="{DataTemplate localInicio:InicioPage}" Route="InicioPage"/>
+        </Tab>
+
+        <Tab Title="Favoritos" Icon="heart_solid.svg">
+            <ShellContent ContentTemplate="{DataTemplate localFavoritos:FavoritosPage}" Route="FavoritosPage"/>
+        </Tab>
+        
+        <Tab Title="Carrito" Icon="cartshopping_solid.svg" >
+            <ShellContent ContentTemplate="{DataTemplate localCarrito:CarritoPage}" Route="CarritoPage"/>
+        </Tab>
+
+        <Tab Title="Mi Cuenta" Icon="user_solid.svg">
+            <ShellContent ContentTemplate="{DataTemplate localCuenta:CuentaPage}" Route="CuentaPage"/>
+        </Tab>
+    </TabBar>
+</Shell>

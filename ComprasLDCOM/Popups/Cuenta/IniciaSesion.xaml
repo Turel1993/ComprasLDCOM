@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           x:Class="ComprasLDCOM.Popups.Cuenta.IniciaSesion"
+           CanBeDismissedByTappingOutsideOfPopup="True"
+           Color="Transparent">
+
+    <StackLayout 
+        Margin="70,0"
+        BackgroundColor="Transparent"
+        VerticalOptions="Center">
+        <Frame 
+            
+            HorizontalOptions="FillAndExpand"
+            CornerRadius="5"
+            Padding="0">
+            <StackLayout Background="Transparent">
+
+                <Grid RowDefinitions=".5*,*,*,*,.5*"
+                      RowSpacing="10"
+                      BackgroundColor="DeepSkyBlue" 
+                      VerticalOptions="FillAndExpand" 
+                      HorizontalOptions="FillAndExpand"
+                      Padding="10,20,10,10">
+
+                    <Label 
+                        Grid.Row="0"
+                        Text="Inicia Sesión"
+                        FontSize="Large"
+                        FontAttributes="Bold"
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Frame Grid.Row="1"
+                       BorderColor="White" 
+                       CornerRadius="10" 
+                       BackgroundColor="White" 
+                       HasShadow="True">
+                        <Entry 
+                              
+                            Text="{Binding Usuario}"
+                            TextColor="Black"
+                            FontSize="18"
+                            Placeholder="Ingrese su correo" 
+                            PlaceholderColor="Gray"
+                            BackgroundColor="White"
+                            IsSpellCheckEnabled="false"
+                            IsTextPredictionEnabled="false"
+                            HeightRequest="50"
+                            FontFamily="Lobster-Regular"/>
+                    </Frame>
+
+                    <Frame Grid.Row="2"
+                       BorderColor="White" 
+                       CornerRadius="10" 
+                       BackgroundColor="White" 
+                       HasShadow="True">
+                        <Entry 
+                              
+                            
+                            Text="{Binding Password}"
+                            TextColor="Black"
+                            FontSize="18"
+                            Placeholder="Ingrese contraseña" 
+                            PlaceholderColor="Gray"
+                            BackgroundColor="White"
+                            IsSpellCheckEnabled="false"
+                            IsTextPredictionEnabled="false"
+                            HeightRequest="50"
+                            FontFamily="Lobster-Regular"/>
+                    </Frame>
+                    <Button Grid.Row="3" 
+                         
+                        Text="Ingresar" 
+                        Command="{Binding EntraLogin}"
+                        HorizontalOptions="Fill"
+                        FontSize="Medium"
+                        FontAttributes ="Bold"
+                        CharacterSpacing ="2"
+                        IsEnabled="{Binding AreButtonsEnabled}"
+                        BackgroundColor="Green"
+                        CornerRadius = "10"
+                        BorderWidth ="3"
+                        BorderColor = "Green"
+                        HeightRequest="50"
+                        Margin="0,0,0,0"/>
+                    <Label 
+                        Grid.Row="4"
+                        Text="Olvide mi contraseña"
+                        FontSize="Subtitle"
+                        TextDecorations="Underline">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CerrarSesion}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+
+</mct:Popup>

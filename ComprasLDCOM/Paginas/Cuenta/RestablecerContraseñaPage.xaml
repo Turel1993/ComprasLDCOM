@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComprasLDCOM.Paginas.Cuenta.RestablecerContraseñaPage"
+             Title="Restablecer Contraseña">
+    <VerticalStackLayout 
+        BackgroundColor="Brown"
+        >
+        <Frame
+            Margin="20"
+            Padding="0"
+            >
+            <StackLayout 
+                VerticalOptions="FillAndExpand"
+                Spacing="10">
+                <Label Grid.Row="0"
+                    Padding="10"
+                    Text="Estimado(a) Cliente"
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    Background="red"/>
+                
+                    <Label Grid.Row="1"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalTextAlignment="Center"
+                    FontSize="Body"
+                    Margin="10,0,10,0"
+                    Text="Para restablecer tu contraseña debes dar clic en el siguiente enlace"/>
+                    <Label 
+                    Grid.Row="2"
+                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="GreenYellow"
+                    FontSize="Medium"
+                    Text="  Restablecer Contraseña  ">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Restablecer}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                        
+                    <Label Grid.Row="3"
+                       FontSize="Body"
+                       HorizontalTextAlignment="Center"
+                       Margin="10,0,10,0"
+                       
+                       Text="Este enlace es para un unico inicio de sesion, y te llevara a una pantalla donde podras restablecer tu contraseña"/>
+                    <Label Grid.Row="4"
+                       FontSize="Body"
+                       Margin="0,0,0,10"
+                       HorizontalTextAlignment="Center"
+                       Text="Este enlace caduca al cabo de un dia"
+                       />
+
+                
+            </StackLayout>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>

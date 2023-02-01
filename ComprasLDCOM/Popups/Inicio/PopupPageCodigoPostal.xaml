@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           x:Class="ComprasLDCOM.Popups.Inicio.PopupPageCodigoPostal"
+           xmlns:behaviors ="clr-namespace:ComprasLDCOM.API"
+           CanBeDismissedByTappingOutsideOfPopup="False"
+           Size="320,360">
+
+    <StackLayout>
+        <Grid RowDefinitions="5,45,70,*" ColumnDefinitions="*,*">
+            <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#1F618D"/>
+
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Text="Para brindarte una mejor busqueda de los productos, por favor ingresa tu código postal mediante alguna de las siguientes opciones:" 
+                   FontSize="12" 
+                   FontAttributes="Bold" 
+                   TextColor="{StaticResource ColorFuenteGeneral}" 
+                   HorizontalOptions="CenterAndExpand" 
+                   VerticalOptions="CenterAndExpand"
+                   Margin="5,5,5,5"/>
+
+            <Button Grid.Row="2"
+                    Grid.Column="0"
+                    Text="Por número"
+                    TextColor="{Binding ColorTextoCodigoPostal}"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    FontSize="12"
+                    Command="{Binding IsCheckedCPxCodigoPostal}"
+                    CornerRadius="9"
+                    BorderColor="{Binding ColorFondoCodigoPostal}"
+                    BorderWidth="2"
+                    Background="{Binding ColorFondoCodigoPostal}"
+                    WidthRequest="125"
+                    HeightRequest="40"/>
+
+            <Button Grid.Row="2"
+                    Grid.Column="1"
+                    Text="Por colonia"
+                    TextColor="{Binding ColorTextoColonia}"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    FontSize="12"
+                    Command="{Binding IsCheckedCPxColonia}"
+                    CornerRadius="9"
+                    BorderColor="{Binding ColorFondoColonia}"
+                    BorderWidth="2"
+                    Background="{Binding ColorFondoColonia}"
+                    WidthRequest="125"
+                    HeightRequest="40"/>
+
+            <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding IsVisibleInicioPopupCodigoPostal}">
+                <Grid RowDefinitions="80,80" ColumnDefinitions="3*,7*">
+                    <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" RowDefinitions="3*,6*">
+                        <Label Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Text="Código Postal:" 
+                               FontSize="13" 
+                               FontAttributes="Bold" 
+                               TextColor="{StaticResource ColorFuenteGeneral}" 
+                               HorizontalOptions="CenterAndExpand" 
+                               VerticalOptions="EndAndExpand"/>
+
+                        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="{StaticResource ColorPopupFondoCajaTextoCP}" Background="{StaticResource ColorPopupFondoCajaTextoCP}" CornerRadius="10" HeightRequest="45" WidthRequest="210" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                            <Entry Grid.Row="1" 
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   TextColor="{StaticResource ColorPopupColorTextoCajaTextoCP}"
+                                   Keyboard="Numeric"
+                                   VerticalOptions="CenterAndExpand"
+                                   HeightRequest="65"
+                                   MaxLength="6"
+                                   HorizontalTextAlignment="Center"
+                                   Placeholder="Ingrese su código postal"
+                                   PlaceholderColor="{StaticResource Blue100Accent}"
+                                   Text="{Binding TextoCP, Mode=TwoWay}"/>
+                        </Frame>
+                    </Grid>
+
+                    <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" CornerRadius="10" Padding="0" BackgroundColor="{StaticResource ColorPopupFondoBotonAceptarCP}" VerticalOptions="CenterAndExpand" WidthRequest="170" HeightRequest="53">
+                        <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource ColorPopupFondoBotonAceptarCP}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="160" HeightRequest="43">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ObtenerDatosVirtuales}" CommandParameter="CP"/>
+                            </StackLayout.GestureRecognizers>
+                            <Grid ColumnDefinitions="7*,3*" ColumnSpacing="0" Padding="0">
+
+                                <Image Grid.Column="0" 
+                                       Grid.Row="0"
+                                       HorizontalOptions="CenterAndExpand" 
+                                       VerticalOptions="CenterAndExpand"
+                                       WidthRequest="75"
+                                       HeightRequest="75"
+                                       Source="done_launcher_adaptive_fore.png"
+                                       Margin="0"/>
+
+                                <Label Grid.Column="1" 
+                                       Grid.Row="0"
+                                       Text="Aceptar"
+                                       HorizontalOptions="StartAndExpand"
+                                       FontSize="20" 
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource ColorPopupTextoBotonAceptarCP}"
+                                       VerticalOptions="Center"
+                                       Padding="-20,0,0,0" 
+                                       Margin="0" />
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding IsVisibleInicioPopupColonia}">
+                <Grid RowDefinitions="60,60,60,60" ColumnDefinitions="3*,7*">
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Text="Estado:" 
+                           FontSize="14" 
+                           FontAttributes="Bold" 
+                           TextColor="{StaticResource ColorFuenteGeneral}" 
+                           HorizontalOptions="CenterAndExpand" 
+                           VerticalOptions="CenterAndExpand"/>
+
+                    <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="{StaticResource ColorPopupFondoPickerEstado}" Background="{StaticResource ColorPopupFondoPickerEstado}" CornerRadius="10" HeightRequest="45" WidthRequest="210" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                        <Picker Grid.Row="0" 
+                                Grid.Column="1"
+                                Title="Selecciona el estado"
+                                ItemsSource="{Binding EstadosRepublica}"
+                                ItemDisplayBinding="{Binding Nombre}"
+                                SelectedItem="{Binding EstadoSel}"
+                                HorizontalTextAlignment="Start"
+                                VerticalOptions="CenterAndExpand"
+                                FontSize="14" 
+                                BackgroundColor="{StaticResource ColorPopupFondoPickerEstado}"
+                                HeightRequest="40"
+                                TextColor="{StaticResource ColorPopupTextoPickerEstado}"/>
+                    </Frame>
+
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Text="Municipio:" 
+                           FontSize="13" 
+                           FontAttributes="Bold" 
+                           TextColor="{StaticResource ColorFuenteGeneral}" 
+                           HorizontalOptions="CenterAndExpand" 
+                           VerticalOptions="CenterAndExpand"/>
+
+                    <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="{StaticResource ColorPopupFondoPickerMunicipio}" Background="{StaticResource ColorPopupFondoPickerMunicipio}" CornerRadius="10" HeightRequest="45" WidthRequest="210" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                        <Picker Grid.Row="1" 
+                                Grid.Column="1"
+                                Title="Selecciona el municipio"
+                                ItemsSource="{Binding MunicipiosRepublica}"
+                                ItemDisplayBinding="{Binding Nombre}"
+                                SelectedItem="{Binding MunicipioSel}"
+                                HorizontalTextAlignment="Start"
+                                VerticalOptions="CenterAndExpand"
+                                FontSize="14" 
+                                BackgroundColor="{StaticResource ColorPopupFondoPickerMunicipio}"
+                                HeightRequest="40"
+                                TextColor="{StaticResource ColorPopupTextoPickerMunicipio}"/>
+                    </Frame>
+
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           Text="Colonia:" 
+                           FontSize="13" 
+                           FontAttributes="Bold" 
+                           TextColor="{StaticResource ColorFuenteGeneral}" 
+                           HorizontalOptions="CenterAndExpand" 
+                           VerticalOptions="CenterAndExpand"/>
+
+                    <Frame Grid.Row="2" Grid.Column="1" BackgroundColor="{StaticResource ColorPopupFondoPickerColonia}" Background="{StaticResource ColorPopupFondoPickerColonia}" CornerRadius="10" HeightRequest="45" WidthRequest="210" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                        <Picker Grid.Row="2" 
+                                Grid.Column="1"
+                                Title="Selecciona la colonia"
+                                ItemsSource="{Binding ColoniasRepublica}"
+                                ItemDisplayBinding="{Binding Nombre}"
+                                SelectedItem="{Binding ColoniaSel}"
+                                HorizontalTextAlignment="Start"
+                                VerticalOptions="CenterAndExpand"
+                                FontSize="14" 
+                                BackgroundColor="{StaticResource ColorPopupFondoPickerColonia}"
+                                HeightRequest="40"
+                                TextColor="{StaticResource ColorPopupTextoPickerColonia}"/>
+                    </Frame>
+
+                    <Frame Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" CornerRadius="10" Padding="0" BackgroundColor="{StaticResource ColorPopupFondoBotonAceptarColonia}" VerticalOptions="CenterAndExpand" WidthRequest="170" HeightRequest="53">
+                        <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource ColorPopupFondoBotonAceptarColonia}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="160" HeightRequest="43">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ObtenerDatosVirtuales}" CommandParameter="Colonia"/>
+                            </StackLayout.GestureRecognizers>
+                            <Grid ColumnDefinitions="7*,3*" ColumnSpacing="0" Padding="0">
+
+                                <Image Grid.Column="0" 
+                                       Grid.Row="0"
+                                       HorizontalOptions="CenterAndExpand" 
+                                       VerticalOptions="CenterAndExpand"
+                                       WidthRequest="75"
+                                       HeightRequest="75"
+                                       Source="done_launcher_adaptive_fore.png"
+                                       Margin="0"/>
+
+                                <Label Grid.Column="1" 
+                                       Grid.Row="0"
+                                       Text="Aceptar"
+                                       HorizontalOptions="StartAndExpand"
+                                       FontSize="20" 
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource ColorPopupTextoBotonAceptarColonia}"
+                                       VerticalOptions="Center"
+                                       Padding="-20,0,0,0" 
+                                       Margin="0" />
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+</mct:Popup>

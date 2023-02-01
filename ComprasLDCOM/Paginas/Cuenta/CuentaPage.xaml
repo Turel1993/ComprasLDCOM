@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ComprasLDCOM.Paginas.Cuenta.CuentaPage"
+             xmlns:behaviors ="clr-namespace:ComprasLDCOM.API"
+             xmlns:vm="clr-namespace:ComprasLDCOM.Modelos.Cuenta"
+             xmlns:event ="clr-namespace:ComprasLDCOM.Resources.Events"
+             NavigationPage.HasNavigationBar="false"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource ColorCuentaFondo}">
+
+    <ContentPage.Resources>
+        <event:InverseBool x:Key="inverter" />
+    </ContentPage.Resources>
+
+    <StackLayout VerticalOptions="Fill">
+        <Grid RowDefinitions=".3*,*" 
+              VerticalOptions="FillAndExpand"
+              >
+
+            <StackLayout
+            
+            Grid.Row="0">
+
+            <Grid RowDefinitions="*,*,*,*"
+                  ColumnDefinitions="0.6*,*"
+                  VerticalOptions="FillAndExpand"
+                  HorizontalOptions="FillAndExpand">
+
+                <Image Grid.Row="0" 
+                       Grid.Column="0"
+                       Grid.RowSpan="3"
+                       Source="circle_user_solid.svg"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       HeightRequest="120"
+                       />
+
+                <Label Grid.Column="1"
+                    Grid.Row="0"
+                    VerticalOptions="EndAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{Binding Nombre}"
+                    FontAttributes="Bold"
+                    FontSize="Title"
+                    />
+                <Label Grid.Column="1"
+                    Grid.Row="1"
+                    Text="{Binding Correo}"
+                    FontSize="Medium"
+                    VerticalOptions="StartAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    />
+
+                    <Label 
+                    IsVisible="{Binding SesionIniciada, Converter={StaticResource inverter}}"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    HorizontalOptions="Start"
+                    Text="Ver mi perfil"
+                    FontSize="Medium"
+                    TextColor="CadetBlue"
+                    TextDecorations="Underline">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer />
+                        </Label.GestureRecognizers>
+                        <Label.Behaviors>
+                            <behaviors:ViewTappedButtonBehavior Command="{Binding MiPerfil}" AnimationType="Scale"  />
+                        </Label.Behaviors>
+                    </Label>
+
+                    <Label Grid.Column="0"
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    BackgroundColor="DodgerBlue"
+                    Text="Verifica tu Cuenta"
+                    FontSize="Large"
+                    Padding="15,5,0,0"/>
+
+            </Grid>
+        </StackLayout>
+        <ScrollView 
+            Grid.Row="1"
+            Background="{StaticResource Gray100Brush}"
+            HorizontalOptions="StartAndExpand"
+            >
+
+            <StackLayout Margin="20,20,20,0">
+                
+                    <!--#region Mi Cuenta-->
+                <toolkit:Expander 
+                        Margin="0,0,0,0"
+                        IsVisible="{Binding SesionIniciada, Converter={StaticResource inverter}}">
+
+                        <toolkit:Expander.Header>
+                            <Frame BorderColor="Transparent"
+                                   Padding="22,5,0,5"
+                                   CornerRadius="3"
+                                   Margin="20,0">
+                                <Label Grid.Column="1" 
+                                       Text="Mi cuenta"
+                                       FontAttributes="Bold"
+                                       FontFamily=""
+                                       FontSize="Title" />
+                            </Frame>
+                        </toolkit:Expander.Header>
+
+                        <toolkit:Expander.Content>
+                            <Frame Margin="30,5"
+                                   BackgroundColor="LightGray"
+                                   CornerRadius="5"
+                                   Padding="0"
+                                   BorderColor="Transparent">
+
+                                <StackLayout Spacing=".5">
+
+                                    <Grid ColumnDefinitions="*,4*,*"
+                                          BackgroundColor="Azure"
+                                          Padding="2,6">
+
+                                        <Image Grid.Column="0"
+                                            WidthRequest="20"
+                                            Source="dotnet_bot.svg" />
+
+                                        <Label Grid.Column="1" 
+                                            Text="Mis ordenes" 
+                                            FontSize="Large"  />
+
+                                        <Image Grid.Column="2"
+                                            WidthRequest="10"
+                                            Source="triangle_right.svg" />
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,4*,*"
+                                          BackgroundColor="Azure"
+                                          Padding="2,6">
+
+                                        <Image Grid.Column="0"
+                                            WidthRequest="20"
+                                            Source="dotnet_bot.svg" />
+
+                                        <Label Grid.Column="1" 
+                                            Text="Mis direcciones" 
+                                            FontSize="Large">
+                                        </Label>
+
+                                        <Image Grid.Column="2"
+                                            WidthRequest="10"
+                                            Source="triangle_right.svg" />
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer />
+                                        </Grid.GestureRecognizers>
+                                        <Grid.Behaviors>
+                                            <behaviors:ViewTappedButtonBehavior Command="{Binding MisDirecciones}" AnimationType="Fade"  />
+                                        </Grid.Behaviors>
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,4*,*"
+                                          BackgroundColor="Azure"
+                                          Padding="2,6">
+
+                                        <Image Grid.Column="0"
+                                            WidthRequest="20"
+                                            Source="dotnet_bot.svg" />
+
+                                        <Label Grid.Column="1" 
+                                            Text="Mis metodos de pago" 
+                                            FontSize="Medium"  />
+
+                                        <Image Grid.Column="2"
+                                            WidthRequest="10"
+                                            Source="triangle_right.svg" />
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,4*,*"
+                                          BackgroundColor="Azure"
+                                          Padding="2,6">
+
+                                        <Image Grid.Column="0"
+                                            WidthRequest="20"
+                                            Source="dotnet_bot.svg" />
+
+                                        <Label Grid.Column="1" 
+                                            Text="Mi facturación" 
+                                            FontSize="Large"  />
+
+                                        <Image Grid.Column="2"
+                                            WidthRequest="10"
+                                            Source="triangle_right.svg" />
+                                    </Grid>
+                                   
+                                    <Grid ColumnDefinitions="*,4*,*"
+                                          BackgroundColor="Azure"
+                                          Padding="2,6">
+
+                                        <Image Grid.Column="0"
+                                            WidthRequest="20"
+                                            Source="dotnet_bot.svg" />
+
+                                        <Label Grid.Column="1" 
+                                            Text="Notificaciones" 
+                                            FontSize="Large"  />
+
+                                        <Image Grid.Column="2"
+                                            WidthRequest="10"
+                                            Source="triangle_right.svg" />
+                                    </Grid>
+
+                                </StackLayout>
+                                
+                            </Frame>
+                        </toolkit:Expander.Content>
+                    </toolkit:Expander>
+            <!--#endregion-->
+
+                    <!--#region Mis documentos-->
+                    <toolkit:Expander 
+                        Margin="0,0,0,0"
+                        IsVisible="{Binding SesionIniciada, Converter={StaticResource inverter}}">
+
+                        <toolkit:Expander.Header>
+                            <Frame BorderColor="Transparent"
+                                   Padding="22,5,0,5"
+                                   CornerRadius="3"
+                                   Margin="20,0">
+                                <Label Grid.Column="1" 
+                                       Text="Mis documentos"
+                                       FontAttributes="Bold"
+                                       FontFamily=""
+                                       FontSize="Title" />
+                            </Frame>
+                        </toolkit:Expander.Header>
+
+                        <toolkit:Expander.Content>
+                            <Frame Margin="30,5"
+                                   BackgroundColor="LightGray"
+                                   CornerRadius="5"
+                                   Padding="0"
+                                   BorderColor="Transparent">
+
+                                <StackLayout Spacing=".5">
+
+                                    <Grid ColumnDefinitions="*,4*,*"
+                                          BackgroundColor="Azure"
+                                          Padding="2,6">
+
+                                        <Image Grid.Column="0"
+                                            WidthRequest="20"
+                                            Source="dotnet_bot.svg" />
+
+                                        <Label Grid.Column="1" 
+                                            Text="Recetas" 
+                                            FontSize="Large"  />
+
+                                        <Image Grid.Column="2"
+                                            WidthRequest="10"
+                                            Source="triangle_right.svg" />
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,4*,*"
+                                          BackgroundColor="Azure"
+                                          Padding="2,6">
+
+                                        <Image Grid.Column="0"
+                                            WidthRequest="20"
+                                            Source="dotnet_bot.svg" />
+
+                                        <Label Grid.Column="1" 
+                                            Text="Monedero" 
+                                            FontSize="Large"  />
+
+                                        <Image Grid.Column="2"
+                                            WidthRequest="10"
+                                            Source="triangle_right.svg" />
+                                    </Grid>
+
+                                </StackLayout>
+
+                            </Frame>
+                        </toolkit:Expander.Content>
+                    </toolkit:Expander>
+                    <!--#endregion-->
+
+                    <!--#region Mis conexiones-->
+                    <toolkit:Expander 
+                        Margin="0,0,0,0"
+                        IsVisible="{Binding SesionIniciada, Converter={StaticResource inverter}}">
+
+                        <toolkit:Expander.Header>
+                            <Frame BorderColor="Transparent"
+                                   Padding="22,5,0,5"
+                                   CornerRadius="3"
+                                   Margin="20,0">
+                                <Label Grid.Column="1" 
+                                       Text="Mis conexiones"
+                                       FontAttributes="Bold"
+                                       FontFamily=""
+                                       FontSize="Title" />
+                            </Frame>
+                        </toolkit:Expander.Header>
+
+                        <toolkit:Expander.Content>
+                            <Frame Margin="30,5"
+                                   BackgroundColor="LightGray"
+                                   CornerRadius="5"
+                                   Padding="0"
+                                   BorderColor="Transparent">
+
+                                <StackLayout Spacing=".5">
+
+                                    <Grid ColumnDefinitions="*,4*,*"
+                                          BackgroundColor="Azure"
+                                          Padding="2,6">
+
+                                        <Image Grid.Column="0"
+                                            WidthRequest="20"
+                                            Source="dotnet_bot.svg" />
+
+                                        <Label Grid.Column="1" 
+                                            Text="Medicos" 
+                                            FontSize="Large"  />
+
+                                        <Image Grid.Column="2"
+                                            WidthRequest="10"
+                                            Source="triangle_right.svg" />
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,4*,*"
+                                          BackgroundColor="Azure"
+                                          Padding="2,6">
+
+                                        <Image Grid.Column="0"
+                                            WidthRequest="20"
+                                            Source="dotnet_bot.svg" />
+
+                                        <Label Grid.Column="1" 
+                                            Text="Programas de lealtad" 
+                                            FontSize="Large"  />
+
+                                        <Image Grid.Column="2"
+                                            WidthRequest="10"
+                                            Source="triangle_right.svg" />
+                                    </Grid>
+
+                                </StackLayout>
+
+                            </Frame>
+                        </toolkit:Expander.Content>
+                    </toolkit:Expander>
+                    <!--#endregion-->
+
+                    <!--#region Informacion adicional-->
+                    <toolkit:Expander 
+                        Margin="0,0,0,0"
+                        IsVisible="{Binding SesionIniciada, Converter={StaticResource inverter}}">
+
+                        <toolkit:Expander.Header>
+                            <Frame BorderColor="Transparent"
+                                   Padding="22,5,0,5"
+                                   CornerRadius="3"
+                                   Margin="20,0">
+                                <Label Grid.Column="1" 
+                                       Text="Información adicional"
+                                       FontAttributes="Bold"
+                                       FontFamily=""
+                                       FontSize="Title" />
+                            </Frame>
+                        </toolkit:Expander.Header>
+
+                        <toolkit:Expander.Content>
+                            <Frame Margin="30,5"
+                                   BackgroundColor="LightGray"
+                                   CornerRadius="5"
+                                   Padding="0"
+                                   BorderColor="Transparent">
+
+                                <StackLayout Spacing=".5">
+
+                                    <Grid ColumnDefinitions="*,4*,*"
+                                          BackgroundColor="Azure"
+                                          Padding="2,6">
+
+                                        <Image Grid.Column="0"
+                                            WidthRequest="20"
+                                            Source="dotnet_bot.svg" />
+
+                                        <Label Grid.Column="1" 
+                                            Text="Aviso de privacidad" 
+                                            FontSize="Large"  />
+
+                                        <Image Grid.Column="2"
+                                            WidthRequest="10"
+                                            Source="triangle_right.svg" />
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer />
+                                        </Grid.GestureRecognizers>
+                                        <Grid.Behaviors>
+                                            <behaviors:ViewTappedButtonBehavior Command="{Binding Aviso}" AnimationType="Fade"  />
+                                        </Grid.Behaviors>
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,4*,*"
+                                          BackgroundColor="Azure"
+                                          Padding="2,6">
+
+                                        <Image Grid.Column="0"
+                                            WidthRequest="20"
+                                            Source="dotnet_bot.svg" />
+
+                                        <Label Grid.Column="1" 
+                                            Text="Terminos y condiciones" 
+                                            FontSize="Large"  />
+
+                                        <Image Grid.Column="2"
+                                            WidthRequest="10"
+                                            Source="triangle_right.svg" />
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer />
+                                        </Grid.GestureRecognizers>
+                                        <Grid.Behaviors>
+                                            <behaviors:ViewTappedButtonBehavior Command="{Binding Terminos}" AnimationType="Fade"  />
+                                        </Grid.Behaviors>
+                                    </Grid>
+
+                                </StackLayout>
+
+                            </Frame>
+                        </toolkit:Expander.Content>
+                    </toolkit:Expander>
+                    <!--#endregion-->
+
+                    <!--#region Sesion-->
+                <Frame 
+                    IsVisible="{Binding SesionIniciada}"
+                    
+                    HeightRequest="220"
+                    HorizontalOptions="FillAndExpand"
+                    BorderColor="Transparent">       
+
+                    <Grid RowDefinitions="*,.5*,.5*" RowSpacing="10">
+                        <Label  Grid.Row="0"
+                                Text="Inicia sesión para poder consultar tu información"
+                                FontSize="Medium"
+                                HorizontalTextAlignment="Center"
+                                LineBreakMode="WordWrap"
+                                FontAttributes="Bold"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"/>
+                        <Button Grid.Row="1"
+                                FontAttributes="Bold"
+                                Text="INICIAR SESIÓN"
+                                Command="{Binding IniciarSesion}"/>
+
+                            <Button Grid.Row="2"
+                                Text="CREAR CUENTA"
+                                FontAttributes="Bold"
+                                TextColor="Black"
+                                Command="{Binding CrearCuenta}"
+                                />
+                    </Grid>
+
+                </Frame>
+
+                <Label 
+                    IsVisible="{Binding SesionIniciada, Converter={StaticResource inverter}}"
+                    Padding="10"
+                    HorizontalOptions="Center"
+                    FontSize="Large"
+                    TextDecorations="Underline"
+                    Text="Cerrar Sesión">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CerrarSesion}" />
+                        </Label.GestureRecognizers>
+                </Label>
+
+                <!--#endregion-->
+
+            </StackLayout>
+                
+        </ScrollView>
+        
+    </Grid>
+    </StackLayout>
+</ContentPage>

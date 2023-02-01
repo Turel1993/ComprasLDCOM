@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComprasLDCOM.Paginas.Cuenta.ConfirmacionRegistroPage"
+             Title="ConfirmacionRegistro">
+    <VerticalStackLayout>
+
+        <Label
+            Margin="0,20,0,20"
+            Text="! Bienvenido(a) ¡"
+            FontSize="35"
+            FontAttributes="Bold"
+            HorizontalOptions="CenterAndExpand"/>
+
+        <Frame Margin="10"
+               Padding="5"
+               VerticalOptions="StartAndExpand"
+            >
+            <Grid RowDefinitions="*,*,*,*"
+                  Background="green"
+                  RowSpacing="10"
+                  VerticalOptions="CenterAndExpand"
+                  >
+                <Label Grid.Row="0"
+                    Text="Estimado Cliente:"
+                       FontSize="28"/>
+
+                <Label Grid.Row="1"
+                       VerticalOptions="CenterAndExpand"
+                       Padding="5"
+                       FontSize="20"
+                       VerticalTextAlignment="Center"
+                       Text="Te damos la mas cordial Bienvenida a la app, donde podras consultar y adquirir los medicamentos y productos disponibles para mejorar tu salud. " />
+                <Label Grid.Row="2"
+                       FontSize="20"
+                       VerticalTextAlignment="Center"
+                       Padding="5"
+                       Text="Aprovecha los grandes beneficios que tenemos para ti"/>
+                <Button Grid.Row="3"
+                        Padding="0"
+                        Text="Activar Cuenta"
+                        Margin="10,0,10,10">
+                    
+                </Button>
+            </Grid>
+        </Frame>
+       
+    </VerticalStackLayout>
+</ContentPage>
